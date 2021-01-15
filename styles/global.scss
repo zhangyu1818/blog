@@ -3,12 +3,12 @@
 @import '~gitalk/dist/gitalk.css';
 
 @import './code-highlight';
+@import './tailwind-base-preflight';
 
-@tailwind base;
 @tailwind utilities;
 
 .markdown-body {
-  max-width: 902px;
+  max-width: 846px;
 }
 
 #nprogress .bar {

@@ -3,8 +3,8 @@ module.exports = {
   // darkMode: 'class',
   theme: {
     extend: {
-      screens:{
-        "3xl":"1920px"
+      screens: {
+        '3xl': '1920px',
       },
       colors: {
         primary: {
