@@ -1,7 +1,9 @@
+import { useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
+import Gitalk from 'gitalk'
 import { ParsedUrlQuery } from 'querystring'
-import { queryPostByNumber } from '../../utils/service'
+import { queryPostByNumber, REPO_NAME, REPO_OWNER } from '../../utils/service'
 import { IssueContent } from '../../types/interface'
 import PostContent from '../../layouts/post-content'
 import { CalendarIcon } from '../../components/icon'
@@ -18,6 +20,20 @@ interface PostProps {
 
 export default function Post({ issue }: PostProps) {
   const { number, url, title, createdAt, labels, bodyHTML } = issue
+
+  useEffect(() => {
+    const gitalk = new Gitalk({
+      clientID: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET,
+      repo: REPO_NAME,
+      owner: REPO_OWNER,
+      admin: [REPO_OWNER],
+      number,
+    })
+
+    gitalk.render('gitalk-container')
+  }, [])
+
   return (
     <div className="max-w-6xl mx-auto mt-10">
       <Head>
@@ -36,13 +52,14 @@ export default function Post({ issue }: PostProps) {
         <p className="flex items-center text-sm text-secondary">
           <CalendarIcon className="mr-2" />
           <span>{formatDate(createdAt)}</span>
-          <a href={url} className="ml-4 text-xs underline">
+          <a href={url} target="_blank" className="ml-4 text-xs underline">
             在Github上查看
           </a>
         </p>
       </section>
       <PostContent>
-        <div dangerouslySetInnerHTML={{ __html: bodyHTML }} />
+        <div className="mb-16" dangerouslySetInnerHTML={{ __html: bodyHTML }} />
+        <div id="gitalk-container" />
       </PostContent>
     </div>
   )

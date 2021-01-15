@@ -2,8 +2,8 @@ import graphql from './graphql'
 
 import { RepositoryIssue, RepositoryIssues } from '../types/interface'
 
-const REPO_OWNER = 'zhangyu1818'
-const REPO_NAME = 'blog'
+export const REPO_OWNER = 'zhangyu1818'
+export const REPO_NAME = 'blog'
 
 export const queryPostsFromIssues = () =>
   graphql<RepositoryIssues>(`
