@@ -1,0 +1,15 @@
+@import '~nprogress/nprogress.css';
+@import '~@primer/css/markdown';
+
+@import './code-highlight';
+
+@tailwind base;
+@tailwind utilities;
+
+.markdown-body {
+  max-width: 902px;
+}
+
+#nprogress .bar {
+  background: #0366d6 !important;
+}
