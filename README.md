@@ -1,3 +1,3 @@
 # zhangyu1818的博客
 
-[列表](https://github.com/zhangyu1818/blog/issues)
+[地址](https://zhangyu1818.com)
