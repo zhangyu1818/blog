@@ -31,6 +31,42 @@ export const queryPostsFromIssues = () =>
     }
   `)
 
+export const queryPostsByLabel = (label: string[]) =>
+  graphql<RepositoryIssues>(
+    `
+      query queryIssuesByLabel($label: [String!]) {
+        repository(owner: "${REPO_OWNER}", name: "${REPO_NAME}") {
+          issues(
+            states: OPEN
+            first: 100
+            labels: $label
+            orderBy: { field: CREATED_AT, direction: DESC }
+          ) {
+            nodes {
+              number
+              title
+              createdAt
+              labels(first: 5) {
+                nodes {
+                  color
+                  name
+                }
+              }
+            }
+            pageInfo {
+              hasNextPage
+              endCursor
+            }
+            totalCount
+          }
+        }
+      }
+    `,
+    {
+      label,
+    }
+  )
+
 export const queryPostByNumber = (number: number) =>
   graphql<RepositoryIssue>(
     `

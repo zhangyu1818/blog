@@ -8,7 +8,7 @@ const Bio = () => (
       alt=""
     />
     <div className="font-semibold text-sm">
-      <p className="mb-2">oh oh~,</p>
+      <p>oh oh~,</p>
       <p> sometimes I get a good feeling ~</p>
       <Social className="mt-5" />
     </div>

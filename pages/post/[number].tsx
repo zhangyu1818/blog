@@ -5,7 +5,6 @@ import Gitalk from 'gitalk'
 import { ParsedUrlQuery } from 'querystring'
 import { queryPostByNumber, REPO_NAME, REPO_OWNER } from '../../utils/service'
 import { IssueContent } from '../../types/interface'
-import PostContent from '../../layouts/post-content'
 import { CalendarIcon } from '../../components/icon'
 import formatDate from '../../utils/format-date'
 import Tag from '../../components/tag'
@@ -57,10 +56,10 @@ export default function Post({ issue }: PostProps) {
           </a>
         </p>
       </section>
-      <PostContent>
+      <article className="markdown-body max-w-3xl mx-auto p-8 mt-16">
         <div className="mb-16" dangerouslySetInnerHTML={{ __html: bodyHTML }} />
         <div id="gitalk-container" />
-      </PostContent>
+      </article>
     </div>
   )
 }
