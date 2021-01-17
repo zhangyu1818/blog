@@ -1,1 +1,13 @@
+name: build new version
 
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        if: github.actor == "zhangyu18181"
+        run: curl -X POST ${{ secrets.DEPLOY_HOOK }}
