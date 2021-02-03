@@ -9,13 +9,18 @@ export const queryPostsFromIssues = () =>
   graphql<RepositoryIssues>(`
     {
       repository(owner: "${REPO_OWNER}", name: "${REPO_NAME}") {
-        issues(states: OPEN, first: 100, orderBy: { field: CREATED_AT, direction: DESC }) {
+        issues(
+          states: CLOSED
+          first: 100
+          orderBy: { field: CREATED_AT, direction: DESC }
+          filterBy: { createdBy: "${REPO_OWNER}" }
+        ) {
           nodes {
             number
             title
             createdAt
-            labels(first:5) {
-              nodes{
+            labels(first: 5) {
+              nodes {
                 color
                 name
               }
