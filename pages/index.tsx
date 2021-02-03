@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { queryPostsFromIssues } from '../utils/service'
 import BlogContent from '../layouts/blog-content'
@@ -24,7 +24,7 @@ export default function Blog({ issues }: BlogProps) {
   )
 }
 
-export const getStaticProps: GetStaticProps<BlogProps> = async (context) => {
+export const getServerSideProps: GetServerSideProps<BlogProps> = async () => {
   const {
     repository: { issues },
   } = await queryPostsFromIssues()
