@@ -56,7 +56,7 @@ export default function Post({ issue }: PostProps) {
           </a>
         </p>
       </section>
-      <article className="markdown-body max-w-3xl mx-auto p-8 mt-16">
+      <article className="markdown-body max-w-3xl mx-auto md:p-8 mt-16">
         <div className="mb-16" dangerouslySetInnerHTML={{ __html: bodyHTML }} />
         <div id="gitalk-container" />
       </article>
