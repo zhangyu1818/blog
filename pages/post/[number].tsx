@@ -39,10 +39,7 @@ export default function Post({ issue }: PostProps) {
       const match = ele.href.match(/^https:\/\/github.com\/zhangyu1818\/blog\/issues\/(\d+)/)
       if (match) {
         const [, issueNumber] = match
-        ele.href =
-          process.env.NODE_ENV === 'development'
-            ? `/post/${issueNumber}`
-            : `https://zhangyu1818.com/post/${issueNumber}`
+        ele.href = `/post/${issueNumber}`
       }
     })
   }, [])
