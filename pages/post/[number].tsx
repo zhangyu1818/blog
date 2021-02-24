@@ -31,6 +31,20 @@ export default function Post({ issue }: PostProps) {
     })
 
     gitalk.render('gitalk-container')
+
+    const linkElements = document.querySelectorAll<HTMLLinkElement>(
+      '.markdown-body-content a[href]'
+    )
+    linkElements.forEach((ele) => {
+      const match = ele.href.match(/^https:\/\/github.com\/zhangyu1818\/blog\/issues\/(\d+)/)
+      if (match) {
+        const [, issueNumber] = match
+        ele.href =
+          process.env.NODE_ENV === 'development'
+            ? `/post/${issueNumber}`
+            : `https://zhangyu1818.com/post/${issueNumber}`
+      }
+    })
   }, [])
 
   return (
@@ -57,7 +71,10 @@ export default function Post({ issue }: PostProps) {
         </p>
       </section>
       <article className="markdown-body max-w-3xl mx-auto md:p-8 mt-16">
-        <div className="mb-16" dangerouslySetInnerHTML={{ __html: bodyHTML }} />
+        <div
+          className="markdown-body-content mb-16"
+          dangerouslySetInnerHTML={{ __html: bodyHTML }}
+        />
         <div id="gitalk-container" />
       </article>
     </div>
