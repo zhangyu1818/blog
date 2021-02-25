@@ -15,6 +15,7 @@ export interface IssueContentBaseFields {
   number: number
   title: string
   createdAt: string
+  updatedAt: string
   labels: Labels
 }
 

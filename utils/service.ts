@@ -19,6 +19,7 @@ export const queryPostsFromIssues = () =>
             number
             title
             createdAt
+            updatedAt
             labels(first: 5) {
               nodes {
                 color
