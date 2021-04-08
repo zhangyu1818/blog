@@ -19,7 +19,7 @@ export default function Categories({ issues, label }: CategoriesProps) {
   return (
     <main className="max-w-6xl mx-auto">
       <h1 className="text-3xl text-secondary lg:py-12">分类为 "{label}" 的文章</h1>
-      <div>
+      <div className="mt-8">
         {nodes.map((v) => (
           <PostItem key={v.number} {...v} />
         ))}
