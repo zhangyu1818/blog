@@ -43,7 +43,7 @@ export const queryPostsByLabel = (label: string[]) =>
       query queryIssuesByLabel($label: [String!]) {
         repository(owner: "${REPO_OWNER}", name: "${REPO_NAME}") {
           issues(
-            states: OPEN
+            states: CLOSED
             first: 100
             labels: $label
             orderBy: { field: CREATED_AT, direction: DESC }
