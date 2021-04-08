@@ -1,4 +1,4 @@
-import { GithubIcon } from './icon'
+import { GithubIcon, JuejinIcon } from './icon'
 
 interface SocialProps {
   className?: string
@@ -6,8 +6,16 @@ interface SocialProps {
 
 const Social = ({ className }: SocialProps) => (
   <div className={`flex items-center text-lg ${className}`}>
-    <a href="https://github.com/zhangyu1818" title="Github">
+    <a target="_blank" href="https://github.com/zhangyu1818" title="Github">
       <GithubIcon />
+    </a>
+    <a
+      className="ml-3"
+      target="_blank"
+      href="https://juejin.cn/user/4089838986339927"
+      title="Juejin"
+    >
+      <JuejinIcon />
     </a>
   </div>
 )
