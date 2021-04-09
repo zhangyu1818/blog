@@ -1,0 +1,11 @@
+@import '~@primer/primitives/dist/scss/colors/light';
+@import '~@primer/primitives/dist/scss/colors/dark';
+
+// primer css variables
+:root {
+  @include primer-colors-light;
+
+  @media (prefers-color-scheme: dark) {
+    @include primer-colors-dark;
+  }
+}

@@ -1,14 +1,35 @@
 @import '~nprogress/nprogress.css';
 @import '~@primer/css/markdown';
-@import '~gitalk/dist/gitalk.css';
 
+@import './colors';
+@import './gitalk';
 @import './code-highlight';
 @import './tailwind-base-preflight';
 
 @tailwind utilities;
 
+body {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-canvas);
+}
+
 .markdown-body {
   max-width: 846px;
+  a {
+    color: var(--color-text-link);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  code {
+    &:after,
+    &:before {
+      letter-spacing: -0.2em;
+      content: ' ';
+    }
+  }
 }
 
 #nprogress .bar {

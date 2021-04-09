@@ -1,6 +1,6 @@
 module.exports = {
   purge: ['./pages/**/*.tsx', './layouts/**/*.tsx', './components/**/*.tsx'],
-  // darkMode: 'class',
+  darkMode: 'media',
   theme: {
     extend: {
       screens: {
@@ -8,17 +8,12 @@ module.exports = {
       },
       colors: {
         primary: {
-          DEFAULT: '#24292e',
-          dark: '#eceff4',
-          hover: '#0366d6',
+          DEFAULT: 'var(--color-text-primary)',
+          hover: 'var(--color-text-link)',
         },
         secondary: {
           DEFAULT: '#586069',
-          dark: '#8b949e',
-        },
-        'primary-bg': {
-          DEFAULT: '#ffffff',
-          dark: '#0d1116',
+          dark: 'var(--color-text-secondary)',
         },
       },
     },

@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         sitemapItem({
           loc: `https://zhangyu1818.com/post/${post.number}`,
           lastmod: formatDate(post.updatedAt, 'YYYY-MM-DD'),
-          mobile: 'pc,mobile',
+          // mobile: 'pc,mobile',
         })
       )
     )

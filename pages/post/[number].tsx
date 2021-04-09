@@ -62,7 +62,11 @@ export default function Post({ issue }: PostProps) {
         <p className="flex items-center text-sm text-secondary">
           <CalendarIcon className="mr-2" />
           <span>{formatDate(createdAt)}</span>
-          <a href={url} target="_blank" className="ml-4 text-xs underline">
+          <a
+            href={url}
+            target="_blank"
+            className="ml-4 transition-colors text-xs underline hover:text-gray-800 dark:hover:text-gray-400"
+          >
             在Github上查看
           </a>
         </p>
