@@ -1,6 +1,11 @@
 module.exports = {
-  purge: ['./pages/**/*.tsx', './layouts/**/*.tsx', './components/**/*.tsx'],
-  darkMode: 'media',
+  purge: {
+    content: ['./pages/**/*.tsx', './layouts/**/*.tsx', './components/**/*.tsx'],
+    options: {
+      keyframes: true,
+    },
+  },
+  darkMode: 'class',
   theme: {
     extend: {
       screens: {

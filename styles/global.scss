@@ -11,6 +11,11 @@
 body {
   color: var(--color-text-primary);
   background-color: var(--color-bg-canvas);
+  @apply transition-colors;
+}
+
+.dark img {
+  filter: grayscale(30%);
 }
 
 .markdown-body {

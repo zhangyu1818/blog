@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import ThemeSwitcher from '../components/theme-switcher'
 
 const PageHeader = () => {
   const router = useRouter()
@@ -11,6 +12,8 @@ const PageHeader = () => {
       <h1 className="text-4xl font-black text-gray-700 dark:text-white transform transition-transform hover:translate-y-0.5">
         <Link href="/">zhangyu1818. </Link>
       </h1>
+      <div className="flex-1 " />
+      <ThemeSwitcher />
     </header>
   )
 }

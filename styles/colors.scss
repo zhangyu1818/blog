@@ -8,4 +8,11 @@
   @media (prefers-color-scheme: dark) {
     @include primer-colors-dark;
   }
+
+  &.light {
+    @include primer-colors-light;
+  }
+  &.dark {
+    @include primer-colors-dark;
+  }
 }
