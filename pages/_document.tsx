@@ -14,6 +14,7 @@ class BlogDocument extends Document {
             name="google-site-verification"
             content="-EgIoAC_kAmCy86ZteXPlEBcl3e76-DVX3HLjXhRudg"
           />
+          <meta name="description" content="zhangyu1818的博客" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         </Head>
