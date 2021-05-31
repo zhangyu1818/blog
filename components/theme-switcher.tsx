@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const animate = {
@@ -36,13 +36,16 @@ const LightIcon = () => (
   </motion.span>
 )
 
-/*
-  svg will throw an error
-  https://github.com/facebook/react/issues/15187
- */
-
 const ThemeSwitcher = () => {
-  const [themeState, setThemeState] = useState(() => {
+  const [themeState, setThemeState] = useState(null)
+
+  const onToggle = () => {
+    const nextTheme = themeState === 'light' ? 'dark' : 'light'
+    document.documentElement.className = nextTheme
+    setThemeState(nextTheme)
+  }
+
+  useEffect(() => {
     let theme = 'light'
     if (process.browser) {
       let pref = window.matchMedia('(prefers-color-scheme: light)')
@@ -51,13 +54,11 @@ const ThemeSwitcher = () => {
       if (pref.matches) theme = 'dark'
       document.documentElement.className = theme
     }
-    return theme
-  })
+    setThemeState(theme)
+  }, [])
 
-  const onToggle = () => {
-    const nextTheme = themeState === 'light' ? 'dark' : 'light'
-    document.documentElement.className = nextTheme
-    setThemeState(nextTheme)
+  if (themeState === null) {
+    return null
   }
 
   return (
@@ -65,9 +66,7 @@ const ThemeSwitcher = () => {
       className="relative overflow-hidden w-8 h-8 transition-colors rounded cursor-pointer text-gray-600 hover:bg-gray-200 dark:text-primary dark:hover:bg-gray-800"
       onClick={onToggle}
     >
-      <AnimatePresence>
-        {themeState === 'light' ? <DarkIcon key="moon" /> : <LightIcon key="sun" />}
-      </AnimatePresence>
+      <AnimatePresence>{themeState === 'light' ? <DarkIcon /> : <LightIcon />}</AnimatePresence>
     </div>
   )
 }
