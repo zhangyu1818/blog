@@ -10,8 +10,28 @@
 
 body {
   color: var(--color-text-primary);
-  background-color: var(--color-bg-canvas);
-  @apply transition-colors;
+  &::before {
+    content: '';
+    @apply fixed block inset-0 duration-700 transition-none ease-in-out-quart;
+    z-index: -1;
+    background: linear-gradient(
+        to bottom left,
+        var(--color-bg-dark) 50%,
+        var(--color-bg-light) 0,
+        var(--color-bg-light) 100%
+      )
+      no-repeat;
+    background-size: 300vw 300vh;
+    .dark & {
+      background-position: 100%;
+    }
+    .light & {
+      background-position: 0;
+    }
+  }
+  &.apply-transition::before {
+    transition-property: background-position;
+  }
 }
 
 .dark img {

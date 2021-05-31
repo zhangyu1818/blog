@@ -3,6 +3,8 @@
 
 // primer css variables
 :root {
+  --color-bg-light: #fff;
+  --color-bg-dark: #0d1117;
   @include primer-colors-light;
 
   @media (prefers-color-scheme: dark) {

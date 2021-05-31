@@ -24,7 +24,7 @@ const PostItem: FunctionComponent<PostItemProps> = ({ number, title, createdAt, 
         </p>
       )}
     </div>
-    <h1 className="text-xl font-semibold py-4 transition-colors hover:text-primary-hover">
+    <h1 className="text-xl font-semibold py-4 duration-700 transition-colors hover:text-primary-hover">
       <Link href={`/post/${number}`}>{title}</Link>
     </h1>
   </div>

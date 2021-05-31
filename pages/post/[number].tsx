@@ -66,7 +66,7 @@ export default function Post({ issue }: PostProps) {
             href={url}
             target="_blank"
             rel="noopener"
-            className="ml-4 transition-colors text-xs underline hover:text-gray-800 dark:hover:text-gray-400"
+            className="ml-4 duration-700 transition-colors text-xs underline hover:text-gray-800 dark:hover:text-gray-400"
           >
             在Github上查看
           </a>

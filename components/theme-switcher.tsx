@@ -55,6 +55,10 @@ const ThemeSwitcher = () => {
       document.documentElement.className = theme
     }
     setThemeState(theme)
+    // make sure no transition before page theme set
+    setTimeout(() => {
+      document.body.classList.add('apply-transition')
+    }, 1000)
   }, [])
 
   if (themeState === null) {

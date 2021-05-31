@@ -21,6 +21,9 @@ module.exports = {
           dark: 'var(--color-text-secondary)',
         },
       },
+      transitionTimingFunction: {
+        'in-out-quart': 'cubic-bezier(0.76, 0, 0.24, 1)',
+      },
     },
   },
   variants: {

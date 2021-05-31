@@ -7,7 +7,7 @@ const Bio = () => (
       src="/avatar.jpg"
       alt=""
     />
-    <div className="font-semibold text-sm">
+    <div className="font-semibold text-sm transition-colors duration-700">
       <p>oh oh~,</p>
       <p> sometimes I get a good feeling ~</p>
       <Social className="mt-5" />
