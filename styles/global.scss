@@ -55,6 +55,17 @@ body {
       content: ' ';
     }
   }
+  h1,
+  h2 {
+    transition-property: border-bottom-color;
+    @apply duration-700 ease-in-out-quart;
+  }
+  .highlight pre {
+    @apply transition-colors duration-100;
+    * {
+      transition: none;
+    }
+  }
 }
 
 #nprogress .bar {

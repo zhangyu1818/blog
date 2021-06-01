@@ -58,7 +58,9 @@ export default function Post({ issue }: PostProps) {
             ))}
           </p>
         )}
-        <h1 className="my-4 text-3xl font-bold">{title}</h1>
+        <h1 className="my-4 text-3xl font-bold transition-colors duration-700 ease-in-out-quart">
+          {title}
+        </h1>
         <p className="flex items-center text-sm text-secondary">
           <CalendarIcon className="mr-2" />
           <span>{formatDate(createdAt)}</span>
@@ -66,7 +68,7 @@ export default function Post({ issue }: PostProps) {
             href={url}
             target="_blank"
             rel="noopener"
-            className="ml-4 duration-700 transition-colors text-xs underline hover:text-gray-800 dark:hover:text-gray-400"
+            className="ml-4 duration-700 ease-in-out-quart transition-colors text-xs underline hover:text-gray-800 dark:hover:text-gray-400"
           >
             在Github上查看
           </a>
@@ -74,7 +76,7 @@ export default function Post({ issue }: PostProps) {
       </section>
       <article className="markdown-body max-w-3xl mx-auto md:p-8 mt-16">
         <div
-          className="markdown-body-content mb-16"
+          className="markdown-body-content mb-16 transition-colors duration-700 ease-in-out-quart"
           dangerouslySetInnerHTML={{ __html: bodyHTML }}
         />
         <div id="gitalk-container" />

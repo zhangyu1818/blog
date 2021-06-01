@@ -6,7 +6,7 @@ interface TagProps {
 }
 
 const Tag: FunctionComponent<TagProps> = ({ children }) => (
-  <span className="mr-2 duration-700 transition-colors hover:text-gray-800 dark:hover:text-gray-400">
+  <span className="mr-2 duration-700 ease-in-out-quart transition-colors hover:text-gray-800 dark:hover:text-gray-400">
     <Link href={`/categories/${children}`}>{children}</Link>
   </span>
 )
