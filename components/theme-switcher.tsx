@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import getTheme, { ThemeValue } from '../utils/get-theme'
 
 const animate = {
   y: 0,
@@ -37,7 +38,7 @@ const LightIcon = () => (
 )
 
 const ThemeSwitcher = () => {
-  const [themeState, setThemeState] = useState(null)
+  const [themeState, setThemeState] = useState<ThemeValue | null>(null)
 
   const onToggle = () => {
     const nextTheme = themeState === 'light' ? 'dark' : 'light'
@@ -46,19 +47,8 @@ const ThemeSwitcher = () => {
   }
 
   useEffect(() => {
-    let theme = 'light'
-    if (process.browser) {
-      let pref = window.matchMedia('(prefers-color-scheme: light)')
-      if (pref.matches) theme = 'light'
-      pref = window.matchMedia('(prefers-color-scheme: dark)')
-      if (pref.matches) theme = 'dark'
-      document.documentElement.className = theme
-    }
+    const theme = getTheme()
     setThemeState(theme)
-    // make sure no transition before page theme set
-    setTimeout(() => {
-      document.body.classList.add('apply-transition')
-    }, 1000)
   }, [])
 
   if (themeState === null) {
