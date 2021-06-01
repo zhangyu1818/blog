@@ -21,6 +21,22 @@ class BlogDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              // i don't know hot to use DOMContentLoaded on Next.js
+              let theme = 'light';
+              let pref = window.matchMedia('(prefers-color-scheme: light)');
+              if (pref.matches) theme = 'light';
+              pref = window.matchMedia('(prefers-color-scheme: dark)');
+              if (pref.matches) theme = 'dark';
+              document.documentElement.className = theme;
+              setTimeout(() => {
+                document.body.classList.add('apply-transition');
+              })
+              `,
+            }}
+          />
         </body>
       </Html>
     )
