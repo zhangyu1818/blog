@@ -65,6 +65,21 @@ body {
   }
 }
 
-#nprogress .bar {
-  background: #0366d6 !important;
+// override nprogress color
+#nprogress {
+  .bar {
+    background: var(--color-text-link) !important;
+  }
+  .peg {
+    box-shadow: 0 0 10px var(--color-text-link), 0 0 5px var(--color-text-link) !important;
+  }
+  .spinner-icon {
+    border-left-color: var(--color-text-link) !important;
+    border-top-color: var(--color-text-link) !important;
+  }
+}
+
+#scroll-progress {
+  transition-property: width;
+  @apply fixed left-0 top-0 z-10 h-1 bg-blue-500 duration-300;
 }

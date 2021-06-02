@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Gitalk from 'gitalk'
+import progressBar from 'scroll-progress-bar'
 import { ParsedUrlQuery } from 'querystring'
 import { queryPostByNumber, REPO_NAME, REPO_OWNER } from '../../utils/service'
 import { IssueContent } from '../../types/interface'
@@ -19,6 +20,11 @@ interface PostProps {
 
 export default function Post({ issue }: PostProps) {
   const { number, url, title, createdAt, labels, bodyHTML } = issue
+
+  useEffect(() => {
+    progressBar.show()
+    return progressBar.hide
+  })
 
   useEffect(() => {
     const gitalk = new Gitalk({
