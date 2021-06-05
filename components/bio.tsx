@@ -17,7 +17,7 @@ const Bio = () => (
       <div>
         <p className="mb-2">
           I am a Front-end Engineer, obsessed with{' '}
-          <span className="text-yellow-500">&lt;Writing /&gt;</span> code, like open source, and a
+          <span className="text-yellow-500">&lt;Coding /&gt;</span>, like open source, and a
           contributor to Ant Design. I like reinventing the useless wheel.
         </p>
         <p>
