@@ -1,3 +1,5 @@
 # zhangyu1818的博客
 
-[地址](https://zhangyu1818.com)
+[zhangyu1818](https://zhangyu1818.com)
+
+[issues](https://github.com/zhangyu1818/blog/issues?q=is%3Aissue+is%3Aclosed) 列表
