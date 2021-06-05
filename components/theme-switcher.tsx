@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import getTheme, { ThemeValue } from '../utils/get-theme'
+import { toggleMask } from './mask'
+import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 
 const animate = {
   y: 0,
@@ -37,16 +39,24 @@ const LightIcon = () => (
   </motion.span>
 )
 
-const ThemeSwitcher = () => {
+interface ThemeSwitchProps {
+  className?: string
+}
+
+const ThemeSwitcher = ({ className = '' }: ThemeSwitchProps) => {
   const [themeState, setThemeState] = useState<ThemeValue | null>(null)
 
   const onToggle = () => {
     const nextTheme = themeState === 'light' ? 'dark' : 'light'
     document.documentElement.className = nextTheme
     setThemeState(nextTheme)
+
+    // MaskShadow effect should not belong to ThemeSwitcher
+    // but I don’t have a better solution
+    toggleMask()
   }
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const theme = getTheme()
     setThemeState(theme)
   }, [])
@@ -57,7 +67,7 @@ const ThemeSwitcher = () => {
 
   return (
     <div
-      className="relative overflow-hidden w-8 h-8 transition-colors rounded cursor-pointer text-gray-600 hover:bg-gray-200 dark:text-primary dark:hover:bg-gray-800"
+      className={`overflow-hidden w-8 h-8 transition-colors rounded cursor-pointer text-gray-600 hover:bg-gray-200 dark:text-primary dark:hover:bg-gray-800 ${className}`}
       onClick={onToggle}
     >
       <AnimatePresence>{themeState === 'light' ? <DarkIcon /> : <LightIcon />}</AnimatePresence>

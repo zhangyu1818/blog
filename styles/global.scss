@@ -3,13 +3,14 @@
 
 @import './colors';
 @import './gitalk';
+@import './mask';
 @import './code-highlight';
 @import './tailwind-base-preflight';
 
 @tailwind utilities;
 
 body {
-  color: var(--color-text-primary);
+  @apply text-primary overscroll-y-none;
   &::before {
     content: '';
     @apply fixed block inset-0 duration-700 transition-none ease-in-out-quart;
@@ -68,18 +69,22 @@ body {
 // override nprogress color
 #nprogress {
   .bar {
-    background: var(--color-text-link) !important;
+    @apply bg-yellow-500;
   }
   .peg {
-    box-shadow: 0 0 10px var(--color-text-link), 0 0 5px var(--color-text-link) !important;
+    box-shadow: 0 0 10px #f59e0b, 0 0 5px #f59e0b;
   }
   .spinner-icon {
-    border-left-color: var(--color-text-link) !important;
-    border-top-color: var(--color-text-link) !important;
+    border-left-color: #f59e0b;
+    border-top-color: #f59e0b;
   }
 }
 
 #scroll-progress {
   transition-property: width;
-  @apply fixed left-0 top-0 z-10 h-1 bg-blue-500 duration-300;
+  @apply fixed left-0 top-0 z-10 h-1 bg-yellow-500 duration-100;
+}
+
+.transition-special {
+  transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
 }

@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Gitalk from 'gitalk'
@@ -9,6 +8,7 @@ import { IssueContent } from '../../types/interface'
 import { CalendarIcon } from '../../components/icon'
 import formatDate from '../../utils/format-date'
 import Tag from '../../components/tag'
+import useIsomorphicLayoutEffect from '../../hooks/useIsomorphicLayoutEffect'
 
 interface PostPageParams extends ParsedUrlQuery {
   number: string
@@ -21,12 +21,12 @@ interface PostProps {
 export default function Post({ issue }: PostProps) {
   const { number, url, title, createdAt, labels, bodyHTML } = issue
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     progressBar.show()
     return progressBar.hide
   })
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const gitalk = new Gitalk({
       clientID: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
       clientSecret: process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET,
@@ -51,7 +51,7 @@ export default function Post({ issue }: PostProps) {
   }, [])
 
   return (
-    <div className="max-w-6xl mx-auto mt-10">
+    <div className="max-w-6xl mx-auto">
       <Head>
         <title>{title} | zhangyu1818.</title>
       </Head>
@@ -76,7 +76,7 @@ export default function Post({ issue }: PostProps) {
             rel="noopener"
             className="ml-4 duration-700 ease-in-out-quart transition-colors text-xs underline hover:text-gray-800 dark:hover:text-gray-400"
           >
-            在Github上查看
+            View on Github
           </a>
         </p>
       </section>

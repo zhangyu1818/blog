@@ -1,0 +1,24 @@
+@keyframes slide-in {
+  0% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+.mask-shadow {
+  background: linear-gradient(
+    to top,
+    transparent 5%,
+    var(--color-fade-fg-current),
+    var(--color-bg-canvas)
+  );
+  &.hide {
+    opacity: 0;
+  }
+  &.show {
+    opacity: 1;
+    transition: opacity 700ms ease-out;
+  }
+}

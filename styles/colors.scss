@@ -5,16 +5,22 @@
 :root {
   --color-bg-light: #fff;
   --color-bg-dark: #0d1117;
+
   @include primer-colors-light;
+
+  --color-fade-fg-current: var(--color-fade-white-10);
 
   @media (prefers-color-scheme: dark) {
     @include primer-colors-dark;
+    --color-fade-fg-current: var(--color-fade-black-10);
   }
 
   &.light {
     @include primer-colors-light;
+    --color-fade-fg-current: var(--color-fade-white-10);
   }
   &.dark {
     @include primer-colors-dark;
+    --color-fade-fg-current: var(--color-fade-black-10);
   }
 }
