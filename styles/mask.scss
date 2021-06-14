@@ -10,10 +10,10 @@
 .mask-shadow {
   background: linear-gradient(
     to top,
-    transparent 5%,
     var(--color-fade-fg-current),
     var(--color-bg-canvas)
   );
+  pointer-events: none;
   &.hide {
     opacity: 0;
   }

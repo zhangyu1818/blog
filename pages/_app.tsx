@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { AppProps } from 'next/app'
 import Router from 'next/router'
 import NProgress from 'nprogress'
@@ -23,6 +24,12 @@ const App = ({ Component, pageProps, router }: AppProps) => {
   }
   return (
     <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1"
+        />
+      </Head>
       <Mask position="top" />
       {content}
       <Mask position="bottom" />

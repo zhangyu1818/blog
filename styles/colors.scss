@@ -12,7 +12,7 @@
 
   @media (prefers-color-scheme: dark) {
     @include primer-colors-dark;
-    --color-fade-fg-current: var(--color-fade-black-10);
+    --color-fade-fg-current: rgba(21, 21, 21, 0);
   }
 
   &.light {
@@ -21,6 +21,6 @@
   }
   &.dark {
     @include primer-colors-dark;
-    --color-fade-fg-current: var(--color-fade-black-10);
+    --color-fade-fg-current: rgba(21, 21, 21, 0);
   }
 }
