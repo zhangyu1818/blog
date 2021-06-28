@@ -19,27 +19,27 @@
     ]
   },
   "dependencies": {
-    "@octokit/graphql": "^4.6.2",
-    "@primer/css": "^17.2.1",
-    "@primer/primitives": "^4.3.6",
+    "@octokit/graphql": "^4.6.4",
+    "@primer/css": "^17.3.0",
+    "@primer/primitives": "^4.5.0",
     "dayjs": "^1.10.5",
     "framer-motion": "^4.1.17",
     "gitalk": "^1.7.2",
-    "next": "^10.2.3",
+    "next": "latest",
     "nprogress": "^0.2.0",
     "react": "latest",
     "react-dom": "latest",
-    "scroll-progress-bar": "^1.2.0",
-    "tailwindcss": "^2.1.4"
+    "scroll-progress-bar": "latest",
+    "tailwindcss": "2.1.4"
   },
   "devDependencies": {
-    "@types/node": "^14.17.1",
+    "@types/node": "^14.17.4",
     "@types/nprogress": "^0.2.0",
     "@types/react": "latest",
     "autoprefixer": "^10.2.6",
     "lint-staged": "^10.5.4",
-    "postcss": "^8.3.0",
-    "sass": "^1.34.0",
-    "typescript": "^4.3.2"
+    "postcss": "^8.3.5",
+    "sass": "^1.35.1",
+    "typescript": "latest"
   }
 }

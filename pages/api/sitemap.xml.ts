@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     memorized.sitemap = sitemap(
       posts.map((post) =>
         sitemapItem({
-          loc: `https://zhangyu1818.com/post/${post.number}`,
+          loc: `https://${req.headers.host}/post/${post.number}`,
           lastmod: formatDate(post.updatedAt, 'YYYY-MM-DD'),
           // mobile: 'pc,mobile',
         })
