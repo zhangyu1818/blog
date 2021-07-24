@@ -5,8 +5,8 @@
 @import './gitalk';
 @import './mask';
 @import './code-highlight';
-@import './tailwind-base-preflight';
 
+@tailwind base;
 @tailwind utilities;
 
 body {
@@ -32,10 +32,12 @@ body {
   }
 }
 
+// dark img
 .dark img {
   filter: grayscale(30%);
 }
 
+// markdown body
 .markdown-body {
   max-width: 846px;
   a {
@@ -57,6 +59,11 @@ body {
   h2 {
     transition-property: border-bottom-color;
     @apply duration-700 ease-in-out-quart;
+  }
+  ul,
+  ol,
+  li {
+    list-style: revert;
   }
   .highlight pre {
     @apply transition-colors duration-100;
@@ -80,6 +87,7 @@ body {
   }
 }
 
+// scroll progress bar
 #scroll-progress {
   transition-property: width;
   @apply fixed left-0 top-0 z-10 h-1 bg-yellow-500 duration-100;
