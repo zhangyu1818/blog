@@ -35,3 +35,5 @@ export interface Labels {
 
 export type RepositoryIssues = Repository<{ issues: Issues }>
 export type RepositoryIssue = Repository<{ issue: IssueContent }>
+
+export type RepositoryFile = Repository<{ object: { text: string } }>

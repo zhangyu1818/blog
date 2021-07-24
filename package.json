@@ -19,7 +19,7 @@
     ]
   },
   "dependencies": {
-    "@octokit/graphql": "^4.6.4",
+    "@octokit/core": "^3.5.1",
     "@primer/css": "^17.4.0",
     "@primer/primitives": "^4.5.0",
     "dayjs": "^1.10.5",

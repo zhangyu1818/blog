@@ -73,6 +73,21 @@ body {
   }
 }
 
+// bio markdown
+.bio-markdown {
+  code {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+  img {
+    display: inline;
+    background: unset;
+    vertical-align: unset;
+  }
+}
+
 // override nprogress color
 #nprogress {
   .bar {

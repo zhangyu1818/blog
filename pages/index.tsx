@@ -1,17 +1,20 @@
 import { useMemo } from 'react'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { queryPostsFromIssues } from '../utils/service'
 import PostItem from '../components/post-item'
 import useMediaQuery from '../hooks/useMediaQuery'
+import PageLayout from '../layouts/page-layout'
 
-import { Issues } from '../types/interface'
+import { queryPostsFromIssues, renderProfileMarkdown } from '../utils/service'
+
+import type { Issues } from '../types/interface'
 
 interface BlogProps {
   issues: Issues
+  profile: string
 }
 
-export default function Blog({ issues }: BlogProps) {
+export default function Blog({ issues, profile }: BlogProps) {
   const { nodes } = issues
 
   const isMd = useMediaQuery('(min-width: 1024px)')
@@ -51,22 +54,27 @@ export default function Blog({ issues }: BlogProps) {
   }, [isMd])
 
   return (
-    <>
+    <PageLayout bioHTML={profile}>
       <Head>
         <title>zhangyu1818</title>
       </Head>
       <div className="flex group md:max-w-[565px] lg:max-w-[656px]">{postsContent}</div>
-    </>
+    </PageLayout>
   )
 }
 
 export const getServerSideProps: GetServerSideProps<BlogProps> = async () => {
-  const {
-    repository: { issues },
-  } = await queryPostsFromIssues()
+  const [
+    {
+      repository: { issues },
+    },
+    { data: profile },
+  ] = await Promise.all([queryPostsFromIssues(), renderProfileMarkdown()])
+
   return {
     props: {
       issues,
+      profile,
     },
   }
 }
