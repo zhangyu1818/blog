@@ -15,6 +15,7 @@ class BlogDocument extends Document {
             content="-EgIoAC_kAmCy86ZteXPlEBcl3e76-DVX3HLjXhRudg"
           />
           <meta name="description" content="zhangyu1818的博客" />
+          <meta name="theme-color" content="#fff" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Inconsolata:wght@300;400;600;700&display=swap"

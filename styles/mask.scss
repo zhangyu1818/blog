@@ -8,17 +8,12 @@
 }
 
 .mask-shadow {
-  background: linear-gradient(
-    to top,
-    var(--color-fade-fg-current),
-    var(--color-bg-canvas)
-  );
+  background: linear-gradient(to top, var(--color-fade-fg-current), var(--color-bg-canvas));
   pointer-events: none;
   &.hide {
-    opacity: 0;
+    visibility: hidden;
   }
   &.show {
-    opacity: 1;
-    transition: opacity 700ms ease-out;
+    visibility: visible;
   }
 }

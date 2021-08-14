@@ -43,6 +43,12 @@ interface ThemeSwitchProps {
   className?: string
 }
 
+const toggleThemeColor = (theme: ThemeValue) => {
+  const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+  // dark theme color #0d1117, light theme color #fff
+  meta.content = theme === 'dark' ? '#0d1117' : '#fff'
+}
+
 const ThemeSwitcher = ({ className = '' }: ThemeSwitchProps) => {
   const [themeState, setThemeState] = useState<ThemeValue | null>(null)
 
@@ -51,6 +57,11 @@ const ThemeSwitcher = ({ className = '' }: ThemeSwitchProps) => {
     document.documentElement.className = nextTheme
     setThemeState(nextTheme)
 
+    // we should save current select color after toggle. otherwise will get theme from matchMedia
+    document.documentElement.setAttribute('data-selected-color', nextTheme)
+
+    toggleThemeColor(nextTheme)
+
     // MaskShadow effect should not belong to ThemeSwitcher
     // but I don’t have a better solution
     toggleMask()
@@ -58,6 +69,7 @@ const ThemeSwitcher = ({ className = '' }: ThemeSwitchProps) => {
 
   useIsomorphicLayoutEffect(() => {
     const theme = getTheme()
+    toggleThemeColor(theme)
     setThemeState(theme)
   }, [])
 
