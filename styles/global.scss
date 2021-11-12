@@ -111,3 +111,8 @@ body {
 .transition-special {
   transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
 }
+
+// hide github stats
+#user-content-github-stats{
+  display: none;
+}
