@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import getTheme, { ThemeValue } from '../utils/get-theme'
-import { toggleMask } from './mask'
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 
 const animate = {
@@ -61,10 +60,6 @@ const ThemeSwitcher = ({ className = '' }: ThemeSwitchProps) => {
     document.documentElement.setAttribute('data-selected-color', nextTheme)
 
     toggleThemeColor(nextTheme)
-
-    // MaskShadow effect should not belong to ThemeSwitcher
-    // but I don’t have a better solution
-    toggleMask()
   }
 
   useIsomorphicLayoutEffect(() => {

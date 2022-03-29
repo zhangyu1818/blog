@@ -9,8 +9,8 @@ import { IssueContentBaseFields } from '../types/interface'
 interface PostItemProps extends IssueContentBaseFields {}
 
 const PostItem: FunctionComponent<PostItemProps> = ({ number, title, createdAt, labels }) => (
-  <li className="list-none overflow-hidden cursor-pointer transform transition-special md:group-hover:opacity-50 hover:!opacity-100 md:hover:scale-110">
-    <div className="m-1 p-6 md:p-10 bg-tertiary hover:shadow-sm transition duration-700 ease-in-out-quart">
+  <li className="mb-2 md:mb-0 list-none overflow-hidden cursor-pointer transform transition-special md:group-hover:opacity-50 hover:!opacity-100 md:hover:scale-110">
+    <div className="h-full p-6 md:p-10 bg-tertiary hover:shadow-sm transition duration-700 ease-in-out-quart">
       <Link href={`/post/${number}`}>
         <div>
           {labels.nodes.length !== 0 && (

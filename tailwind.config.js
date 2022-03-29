@@ -11,13 +11,7 @@ const defaultFamily = [
 ]
 
 module.exports = {
-  mode: 'jit',
-  purge: {
-    content: ['./pages/**/*.tsx', './layouts/**/*.tsx', './components/**/*.tsx'],
-    options: {
-      keyframes: true,
-    },
-  },
+  content: ['./pages/**/*.tsx', './layouts/**/*.tsx', './components/**/*.tsx'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -29,16 +23,15 @@ module.exports = {
       },
       colors: {
         primary: {
-          DEFAULT: 'var(--color-text-primary)',
-          hover: 'var(--color-text-link)',
+          DEFAULT: 'var(--color-fg-default)',
+          hover: 'var(--color-accent-fg)',
         },
         secondary: {
-          DEFAULT: '#586069',
-          dark: 'var(--color-text-secondary)',
+          DEFAULT: 'var(--color-fg-muted)',
         },
       },
       backgroundColor: {
-        tertiary: 'var(--color-bg-tertiary)',
+        tertiary: 'var(--color-canvas-subtle)',
       },
       transitionTimingFunction: {
         'in-out-quart': 'cubic-bezier(0.76, 0, 0.24, 1)',
@@ -49,8 +42,4 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
 }

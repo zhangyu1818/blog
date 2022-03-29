@@ -3,8 +3,6 @@ import { AppProps } from 'next/app'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 
-import Mask from '../components/mask'
-
 import '../styles/global.scss'
 
 Router.events.on('routeChangeStart', () => NProgress.start())
@@ -22,9 +20,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1"
         />
       </Head>
-      <Mask position="top" />
       {content}
-      <Mask position="bottom" />
     </>
   )
 }

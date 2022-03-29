@@ -3,7 +3,6 @@
 
 @import './colors';
 @import './gitalk';
-@import './mask';
 @import './code-highlight';
 
 @tailwind base;
@@ -86,6 +85,11 @@ body {
     background: unset;
     vertical-align: unset;
   }
+
+  // hide github stats
+  #user-content-github-stats {
+    display: none;
+  }
 }
 
 // override nprogress color
@@ -110,9 +114,4 @@ body {
 
 .transition-special {
   transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
-}
-
-// hide github stats
-#user-content-github-stats{
-  display: none;
 }
