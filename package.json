@@ -26,8 +26,8 @@
     "gitalk": "^1.7.2",
     "next": "^12.1.1",
     "nprogress": "^0.2.0",
-    "react": "^18.0.0-rc.3",
-    "react-dom": "^18.0.0-rc.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "scroll-progress-bar": "latest"
   },
   "devDependencies": {

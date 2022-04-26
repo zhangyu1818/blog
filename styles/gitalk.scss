@@ -29,17 +29,17 @@
     box-sizing: border-box;
   }
   .gt-container a {
-    color: var(--color-text-link);
+    color: var(--color-accent-fg);
   }
   .gt-container a:hover {
     @apply underline;
   }
   .gt-container a.is--active {
-    color: var(--color-text-primary);
+    color: var(--color-fg-default);
     cursor: default !important;
   }
   .gt-container a.is--active:hover {
-    color: var(--color-text-primary);
+    color: var(--color-fg-default);
   }
   .gt-container .hide {
     display: none !important;
@@ -54,11 +54,11 @@
   .gt-container .gt-svg svg {
     width: 100%;
     height: 100%;
-    color: var(--color-text-link);
+    color: var(--color-accent-fg);
   }
   .gt-container .gt-ico {
     display: inline-block;
-    color: var(--color-text-link);
+    color: var(--color-accent-fg);
   }
   .gt-container .gt-ico-text {
     margin-left: 0.3125em;
@@ -92,7 +92,7 @@
     margin-left: -0.375em;
     border-radius: 50%;
     border: 1px solid var(--color-btn-bg);
-    border-top-color: var(--color-text-link);
+    border-top-color: var(--color-accent-fg);
     -webkit-animation: gt-kf-rotate 0.6s linear infinite;
     animation: gt-kf-rotate 0.6s linear infinite;
   }
@@ -198,7 +198,7 @@
   .gt-container .gt-error {
     text-align: center;
     margin: 0.625em;
-    color: var(--color-bg-danger-inverse);
+    color: var(--color-danger-emphasis);
   }
   .gt-container .gt-initing {
     padding: 1.25em 0;
@@ -213,7 +213,7 @@
     text-align: center;
   }
   .gt-container .gt-link {
-    border-bottom: 1px dotted var(--color-text-link);
+    border-bottom: 1px dotted var(--color-accent-fg);
   }
   .gt-container .gt-link-counts,
   .gt-container .gt-link-project {
@@ -223,7 +223,7 @@
     margin: 1.25em 0;
     padding: 1em 0;
     position: relative;
-    border-bottom: 1px solid var(--color-border-secondary);
+    border-bottom: 1px solid var(--color-border-muted);
     font-size: 1em;
     position: relative;
     z-index: 10;
@@ -261,7 +261,7 @@
     fill: inherit;
   }
   .gt-container .gt-user .is--poping .gt-ico svg {
-    fill: var(--color-text-link);
+    fill: var(--color-accent-fg);
   }
   .gt-container .gt-version {
     color: #a1a1a1;
@@ -269,16 +269,16 @@
   }
   .gt-container .gt-copyright {
     margin: 0 0.9375em 0.5em;
-    border-top: 1px solid var(--color-border-secondary);
+    border-top: 1px solid var(--color-border-muted);
     padding-top: 0.5em;
   }
   .gt-container .gt-popup {
     position: absolute;
     right: 0;
     top: 2.375em;
-    background: var(--color-bg-canvas);
+    background: var(----color-canvas-default);
     display: inline-block;
-    border: 1px solid var(--color-border-secondary);
+    border: 1px solid var(--color-border-muted);
     padding: 0.625em 0;
     font-size: 0.875em;
     letter-spacing: 0.5px;
@@ -290,18 +290,18 @@
     padding: 0 1.125em;
     position: relative;
     text-decoration: none;
-    color: var(--color-underlinenav-text) !important;
+    color: var(--color-fg-default) !important;
     &:hover {
-      color: var(--color-underlinenav-text-hover) !important;
+      color: var(--color-fg-default-hover) !important;
     }
   }
   .gt-container .gt-popup .gt-action.is--active {
-    color: var(--color-underlinenav-icon-active) !important;
+    color: var(--color-fg-default) !important;
     &:before {
       content: '';
       width: 0.25em;
       height: 0.25em;
-      background: var(--color-text-link);
+      background: var(--color-accent-fg);
       position: absolute;
       left: 0.5em;
       top: 0.62em;
@@ -337,7 +337,7 @@
     font-size: 0.875em;
     word-wrap: break-word;
     resize: vertical;
-    background-color: var(--color-input-contrast-bg);
+    background-color: var(--color-canvas-inset);
     outline: none;
     -webkit-transition: all 0.25s ease;
     transition: all 0.25s ease;
@@ -347,7 +347,7 @@
     padding: 0.75em;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: var(--color-bg-canvas);
+    background-color: var(----color-canvas-default);
   }
   .gt-container .gt-header-controls {
     position: relative;
@@ -368,7 +368,7 @@
   }
   .gt-container .gt-header-controls-tip {
     font-size: 0.875em;
-    color: var(--color-text-link);
+    color: var(--color-accent-fg);
     text-decoration: none;
     vertical-align: sub;
     &:hover {
@@ -445,8 +445,8 @@
     flex: 1;
     margin-left: 1.25em;
     padding: 0.75em 1em;
-    background-color: var(--color-bg-canvas);
-    border: 1px solid var(--color-border-primary);
+    background-color: var(----color-canvas-default);
+    border: 1px solid var(--color-border-default);
     overflow: auto;
     -webkit-transition: all ease 0.25s;
     transition: all ease 0.25s;
@@ -476,7 +476,7 @@
   }
   .gt-container .gt-comment-username {
     font-weight: 500;
-    color: var(--color-text-link);
+    color: var(--color-accent-fg);
     text-decoration: none;
   }
   .gt-container .gt-comment-username:hover {
@@ -484,11 +484,11 @@
   }
   .gt-container .gt-comment-text {
     margin-left: 0.5em;
-    color: var(--color-text-primary);
+    color: var(--color-fg-default);
   }
   .gt-container .gt-comment-date {
     margin-left: 0.5em;
-    color: var(--color-text-secondary);
+    color: var(--color-fg-muted);
   }
   .gt-container .gt-comment-like,
   .gt-container .gt-comment-edit,
@@ -511,7 +511,7 @@
     right: 0;
   }
   .gt-container .gt-comment-body {
-    color: var(--color-text-primary) !important;
+    color: var(--color-fg-default) !important;
   }
   .gt-container .gt-comment-body .email-hidden-toggle a {
     display: inline-block;
@@ -543,7 +543,7 @@
     display: block;
   }
   .gt-container .gt-comment-admin .gt-comment-content {
-    background-color: var(--color-bg-canvas);
+    background-color: var(----color-canvas-default);
   }
   @-webkit-keyframes gt-kf-rotate {
     0% {
@@ -565,6 +565,4 @@
       transform: rotate(360deg);
     }
   }
-
-  /*# sourceMappingURL=gitalk.css.map*/
 }
