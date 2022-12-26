@@ -1,0 +1,85 @@
+---
+import HeadLayout from '../../layouts/base/HeadLayout.astro'
+import HtmlLayout from '../../layouts/base/HtmlLayout.astro'
+import Markdown from '../../components/Markdown.astro'
+import Icon from '../../components/Icon.astro'
+
+import { queryPostsFromIssues } from '../../services'
+import { formatDate } from '../../utils'
+
+import type { IssueContent } from '../../services/interface'
+
+type ExtraData = {
+  prev: { number: number; title: string } | null
+  next: { number: number; title: string } | null
+}
+
+export async function getStaticPaths() {
+  const { repository } = await queryPostsFromIssues({ withContent: true })
+  const { issues } = repository
+  const { nodes } = issues
+  return nodes.map((node, index) => {
+    const prev = nodes[index - 1]
+    const next = nodes[index + 1]
+
+    return {
+      params: {
+        id: node.number.toString(),
+      },
+      props: {
+        ...node,
+        prev: prev ? { number: prev.number, title: prev.title } : null,
+        next: next ? { number: next.number, title: next.title } : null,
+      },
+    }
+  })
+}
+
+const { title, bodyHTML, labels, createdAt, url, prev, next } = Astro.props as IssueContent & ExtraData
+
+const date = formatDate(createdAt)
+---
+
+<HtmlLayout>
+  <HeadLayout slot="head" />
+  <main class="relative post-content flex flex-col items-end p-8">
+    <div
+      class="xl:fixed xl:left-1/2 xl:-translate-x-full xl:top-8 py-4 px-8 flex flex-col text-end text-accents-5 gap-4"
+    >
+      <a href=".." class="hover:text-accents-7">返回</a>
+      {
+        prev && (
+          <a class="flex flex-col gap-1 hover:text-accents-7 self-start" href={`/post/${prev.number}`}>
+            <Icon name="chevrons-left" />
+            <span>{prev.title}</span>
+          </a>
+        )
+      }
+      {
+        next && (
+          <a class="flex flex-col items-end gap-1 hover:text-accents-7 self-end" href={`/post/${next.number}`}>
+            <span>{next.title}</span>
+            <Icon name="chevrons-right" />
+          </a>
+        )
+      }
+    </div>
+    <div
+      class="w-full xl:w-1/2 p-4 bg-background shadow rounded-lg mb-8 border border-solid border-transparent dark:border-accents-2"
+    >
+      <p>
+        {labels.nodes.map(node => <span class="text-xs text-accents-5 mr-1">#{node.name}</span>)}
+      </p>
+      <h1 class="font-semibold text-3xl pb-2">{title}</h1>
+      <p class="text-sm text-accents-5 flex justify-between">
+        <a class="underline" href={url}>查看原文</a>
+        <span>{date}</span>
+      </p>
+    </div>
+    <Markdown
+      class="w-full xl:w-1/2 p-4 shadow rounded-lg border border-solid border-transparent dark:border-accents-2"
+    >
+      <Fragment set:html={bodyHTML} />
+    </Markdown>
+  </main>
+</HtmlLayout>

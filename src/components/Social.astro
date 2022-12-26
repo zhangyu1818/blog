@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro'
+
+const { class: className } = Astro.props
+---
+
+<ul class:list={['flex', 'gap-4', 'whitespace-nowrap', className]}>
+  <li>
+    <a title="Github" class="flex items-center" href="https://github.com/zhangyu1818">
+      <Icon name="github" />
+      <span class="ml-4 mr-2">Github</span>
+      <Icon name="external-link" />
+    </a>
+  </li>
+  <li>
+    <a title="掘金" class="flex items-center" href="https://juejin.cn/user/4089838986339927">
+      <Icon name="juejin" />
+      <span class="ml-4 mr-2">掘金</span>
+      <Icon name="external-link" />
+    </a>
+  </li>
+</ul>

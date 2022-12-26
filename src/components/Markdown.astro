@@ -1,0 +1,11 @@
+---
+const { class: className } = Astro.props
+---
+
+<div class:list={['markdown-body', className]}>
+  <slot />
+</div>
+
+<style is:global>
+  @import 'github-markdown-css/github-markdown.css';
+</style>

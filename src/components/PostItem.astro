@@ -1,0 +1,30 @@
+---
+import { formatDate } from '../utils'
+
+import type { Label } from '../services/interface'
+
+interface Props {
+  number: number
+  labels: Label[]
+  title: string
+  createdAt: string
+}
+
+const { number, title, labels, createdAt } = Astro.props
+
+const date = formatDate(createdAt)
+---
+
+<a href={`/post/${number}`}>
+  <div
+    class="post-item shadow border border-solid border-transparent dark:border-accents-2 min-h-[280px] rounded-lg bg-accents-1 mb-8 flex flex-col duration-100"
+  >
+    <div class="flex-none p-4">
+      {labels.map(label => <span class="text-xs text-accents-5 py-1 mr-2">#{label.name}</span>)}
+    </div>
+    <div class="p-8 flex-1 flex flex-col items-center justify-center">
+      <h1 class="text-end text-2xl font-semibold">{title}</h1>
+    </div>
+    <span class="p-4 w-full text-end text-accents-6 text-sm">{date}</span>
+  </div>
+</a>

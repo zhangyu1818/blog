@@ -1,0 +1,46 @@
+---
+import HtmlLayout from '../layouts/base/HtmlLayout.astro'
+import HeadLayout from '../layouts/base/HeadLayout.astro'
+import PostItem from '../components/PostItem.astro'
+import Profile from '../components/Profile.astro'
+
+import { queryPostsFromIssues } from '../services'
+
+const {
+  repository: {
+    issues: { nodes: posts },
+  },
+} = await queryPostsFromIssues({ withContent: false })
+---
+
+<HtmlLayout>
+  <HeadLayout slot="head" />
+  <main class="lg:w-3/4 p-4 float-right flex justify-end flex-col md:flex-row gap-4 md:gap-12">
+    <Profile />
+    <div class="md:p-8 post-list">
+      {
+        posts.map(post => (
+          <PostItem number={post.number} title={post.title} labels={post.labels.nodes} createdAt={post.createdAt} />
+        ))
+      }
+    </div>
+  </main>
+</HtmlLayout>
+
+<script>
+  const postItems = document.querySelectorAll<HTMLDivElement>('.post-item')!
+
+  postItems.forEach(ele => {
+    ele.onmousemove = event => {
+      const rate = 20
+      const offsetY = (event.clientX - (ele.getBoundingClientRect().left + ele.offsetWidth / 2)) / ele.offsetWidth
+      const offsetX = (event.clientY - (ele.getBoundingClientRect().top + ele.offsetHeight / 2)) / ele.offsetHeight
+      ele.style.transform = `rotateY(${(offsetY * rate) / 2}deg) rotateX(${(-offsetX * rate) / 2}deg) translateY(${
+        offsetX * rate
+      }px) translateX(${offsetY * rate}px)`
+    }
+    ele.onmouseout = () => {
+      ele.style.transform = `rotateY(0deg) rotateX(0deg) translateY(0px) translateX(0px)`
+    }
+  })
+</script>

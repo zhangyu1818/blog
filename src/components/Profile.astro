@@ -1,0 +1,45 @@
+---
+import Markdown from './Markdown.astro'
+import Social from './Social.astro'
+
+import { queryProfileREADME } from '../services'
+
+const { data: profile } = await queryProfileREADME()
+---
+
+<aside class="md:sticky md:top-0 md:py-8 md:h-screen flex flex-col md:flex-none">
+  <img
+    class="w-24 h-24 md:w-48 md:h-48 rounded-lg shadow-lg mb-8"
+    src="https://www.gravatar.com/avatar/27ee8db42e4599907f401b6c4ac546fc?s=512"
+    alt="avatar"
+  />
+  <Markdown class="flex-1 !bg-transparent">
+    <div class="profile" set:html={profile} />
+  </Markdown>
+  <Social />
+</aside>
+
+<style lang="scss" is:global>
+  .profile {
+    a.anchor {
+      .octicon-link {
+        display: none;
+      }
+    }
+    code {
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+    img {
+      display: inline;
+      background: unset;
+      vertical-align: unset;
+    }
+
+    #user-content-github-stats {
+      display: none;
+    }
+  }
+</style>
