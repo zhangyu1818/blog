@@ -13,6 +13,6 @@ import robotsTxt from 'astro-robots-txt'
 
 // https://astro.build/config
 export default defineConfig({
-  site: import.meta.env.BLOG_URL,
+  site: 'https://zhangyu.dev',
   integrations: [tailwind(), sitemap(), prefetch(), robotsTxt()],
 })

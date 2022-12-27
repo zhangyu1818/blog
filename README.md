@@ -9,7 +9,6 @@
 ```
 REPO_OWNER=zhangyu1818
 REPO_NAME=blog
-BLOG_URL=https://zhangyu.dev
 
 GITHUB_TOKEN=你的token
 ```
