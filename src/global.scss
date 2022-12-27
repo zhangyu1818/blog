@@ -1,4 +1,9 @@
 @media (prefers-color-scheme: dark) {
+  img,
+  [role='img'] {
+    filter: brightness(0.8);
+  }
+
   :root {
     --foreground: #fff;
     --background: #000;

@@ -28,19 +28,26 @@ const {
 </HtmlLayout>
 
 <script>
-  const postItems = document.querySelectorAll<HTMLDivElement>('.post-item')!
-
-  postItems.forEach(ele => {
+  const eleFollowRotate = (ele: HTMLElement, rate: number = 20, shadow: boolean = false) => {
     ele.onmousemove = event => {
-      const rate = 20
       const offsetY = (event.clientX - (ele.getBoundingClientRect().left + ele.offsetWidth / 2)) / ele.offsetWidth
       const offsetX = (event.clientY - (ele.getBoundingClientRect().top + ele.offsetHeight / 2)) / ele.offsetHeight
-      ele.style.transform = `rotateY(${(offsetY * rate) / 2}deg) rotateX(${(-offsetX * rate) / 2}deg) translateY(${
-        offsetX * rate
-      }px) translateX(${offsetY * rate}px)`
+      const rotateY = (offsetY * rate) / 2
+      const rotateX = (-offsetX * rate) / 2
+      const translateY = offsetX * rate
+      const translateX = offsetY * rate
+      ele.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateY(${translateY}px) translateX(${translateX}px)`
+      if (shadow) ele.style.boxShadow = `${-translateX}px ${-translateY}px 30px 5px rgba(0, 0, 0, 0.2)`
     }
     ele.onmouseout = () => {
       ele.style.transform = `rotateY(0deg) rotateX(0deg) translateY(0px) translateX(0px)`
+      if (shadow) ele.style.boxShadow = ''
     }
-  })
+  }
+
+  const postItems = document.querySelectorAll<HTMLDivElement>('.post-item')!
+  const avatarImg = document.querySelector<HTMLImageElement>('.avatar-img')!
+
+  postItems.forEach(ele => eleFollowRotate(ele))
+  eleFollowRotate(avatarImg, 100, true)
 </script>
