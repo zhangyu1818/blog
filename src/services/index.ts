@@ -2,8 +2,8 @@ import { Octokit } from '@octokit/core'
 
 import type { RepositoryIssues, RepositoryFile } from './interface'
 
-const REPO_OWNER = 'zhangyu1818'
-const REPO_NAME = 'blog'
+const REPO_OWNER = import.meta.env.REPO_OWNER
+const REPO_NAME = import.meta.env.REPO_NAME
 
 const { graphql, request } = new Octokit({ auth: import.meta.env.GITHUB_TOKEN })
 

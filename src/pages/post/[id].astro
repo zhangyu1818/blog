@@ -35,7 +35,7 @@ export async function getStaticPaths() {
   })
 }
 
-const { title, bodyHTML, labels, createdAt, url, prev, next } = Astro.props as IssueContent & ExtraData
+const { number, title, bodyHTML, labels, createdAt, url, prev, next } = Astro.props as IssueContent & ExtraData
 
 const date = formatDate(createdAt)
 ---
@@ -87,3 +87,13 @@ const date = formatDate(createdAt)
     </Markdown>
   </main>
 </HtmlLayout>
+
+<script
+  is:inline
+  src="https://utteranc.es/client.js"
+  repo={`${import.meta.env.REPO_OWNER}/${import.meta.env.REPO_NAME}`}
+  issue-number={number}
+  theme="preferred-color-scheme"
+  crossorigin="anonymous"
+  async
+></script>
