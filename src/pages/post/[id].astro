@@ -43,9 +43,9 @@ const date = formatDate(createdAt)
 
 <HtmlLayout>
   <HeadLayout slot="head" title={`${title} | zhangyu1818`} description={title} />
-  <nav class="xl:fixed xl:top-8 xl:-translate-x-full py-4 px-8 flex flex-col text-accents-5 gap-4 mx-auto">
+  <nav class="lg:fixed lg:top-8 lg:-translate-x-full pb-8 px-8 flex flex-col text-accents-5 gap-4 mx-auto">
     <a rel="prefetch" href="/" class="self-end hover:text-accents-7">返回</a>
-    <span class="hidden xl:block center-view-btn hover:text-accents-7 self-end" role="button">居中浏览</span>
+    <span class="hidden lg:block center-view-btn hover:text-accents-7 self-end" role="button">居中浏览</span>
     {
       prev && (
         <a rel="prefetch" class="flex flex-col gap-1 hover:text-accents-7 self-start" href={`/post/${prev.number}`}>
@@ -66,7 +66,9 @@ const date = formatDate(createdAt)
         </a>
       )
     }
-    <span class="back-to-top xl:block center-view-btn hover:text-accents-7 self-end" role="button">返回顶部</span>
+    <span class="hidden back-to-top lg:block center-view-btn hover:text-accents-7 self-end" role="button">
+      返回顶部
+    </span>
   </nav>
   <main class="relative flex flex-col items-end">
     <div
@@ -93,9 +95,9 @@ const date = formatDate(createdAt)
   </main>
 </HtmlLayout>
 
-<style lang="scss" is:global>
+<style>
   body {
-    @apply max-w-[760px] xl:float-right relative p-8 box-content mx-auto;
+    @apply max-w-[760px] lg:float-right p-8;
   }
 </style>
 

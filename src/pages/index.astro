@@ -15,9 +15,11 @@ const {
 
 <HtmlLayout>
   <HeadLayout slot="head" />
-  <main class="lg:w-3/4 px-4 float-right flex justify-end flex-col md:flex-row gap-4 md:gap-12">
+  <main
+    class="lg:w-3/4 lg:float-right px-8 lg:px-12 xl:px-16 flex justify-end flex-col md:flex-row md:gap-8 lg:gap-12 xl:gap-16"
+  >
     <Profile />
-    <div class="md:p-8 post-list">
+    <div class="py-8 lg:py-12 xl:py-16 post-list">
       {
         posts.map(post => (
           <PostItem number={post.number} title={post.title} labels={post.labels.nodes} createdAt={post.createdAt} />

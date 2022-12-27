@@ -8,7 +8,7 @@ import { queryProfileREADME } from '../services'
 const { data: profile } = await queryProfileREADME()
 ---
 
-<aside class="md:sticky md:top-0 md:py-8 md:h-screen flex flex-col md:flex-none">
+<aside class="md:sticky md:top-0 py-8 lg:py-12 xl:py-16 md:h-screen flex flex-col xl:flex-none">
   <Avatar />
   <Markdown class="flex-1 !bg-transparent">
     <div class="profile" set:html={profile} />
