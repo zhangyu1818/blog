@@ -3,6 +3,7 @@ import HeadLayout from '../../layouts/base/HeadLayout.astro'
 import HtmlLayout from '../../layouts/base/HtmlLayout.astro'
 import Markdown from '../../components/Markdown.astro'
 import Icon from '../../components/Icon.astro'
+import Social from '../../components/Social.astro'
 
 import { queryPostsFromIssues } from '../../services'
 import { formatDate } from '../../utils'
@@ -42,34 +43,34 @@ const date = formatDate(createdAt)
 
 <HtmlLayout>
   <HeadLayout slot="head" />
-  <main class="relative post-content flex flex-col items-end p-8">
+  <nav class="xl:fixed xl:top-8 xl:-translate-x-full py-4 px-8 flex flex-col text-accents-5 gap-4 mx-auto">
+    <a rel="prefetch" href=".." class="self-end hover:text-accents-7">返回</a>
+    <span class="hidden xl:block center-view-btn hover:text-accents-7 self-end" role="button">居中浏览</span>
+    {
+      prev && (
+        <a rel="prefetch" class="flex flex-col gap-1 hover:text-accents-7 self-start" href={`/post/${prev.number}`}>
+          <Icon name="chevrons-left" />
+          <span>{prev.title}</span>
+        </a>
+      )
+    }
+    {
+      next && (
+        <a
+          rel="prefetch"
+          class="flex flex-col items-end gap-1 hover:text-accents-7 self-end"
+          href={`/post/${next.number}`}
+        >
+          <span>{next.title}</span>
+          <Icon name="chevrons-right" />
+        </a>
+      )
+    }
+    <span class="back-to-top xl:block center-view-btn hover:text-accents-7 self-end" role="button">返回顶部</span>
+  </nav>
+  <main class="relative flex flex-col items-end">
     <div
-      class="xl:fixed xl:left-1/2 xl:-translate-x-full xl:top-8 py-4 px-8 flex flex-col text-end text-accents-5 gap-4"
-    >
-      <a rel="prefetch" href=".." class="hover:text-accents-7">返回</a>
-      {
-        prev && (
-          <a rel="prefetch" class="flex flex-col gap-1 hover:text-accents-7 self-start" href={`/post/${prev.number}`}>
-            <Icon name="chevrons-left" />
-            <span>{prev.title}</span>
-          </a>
-        )
-      }
-      {
-        next && (
-          <a
-            rel="prefetch"
-            class="flex flex-col items-end gap-1 hover:text-accents-7 self-end"
-            href={`/post/${next.number}`}
-          >
-            <span>{next.title}</span>
-            <Icon name="chevrons-right" />
-          </a>
-        )
-      }
-    </div>
-    <div
-      class="w-full xl:w-1/2 p-4 bg-background shadow rounded-lg mb-8 border border-solid border-transparent dark:border-accents-2"
+      class="w-full p-4 bg-background shadow rounded-lg mb-8 border border-solid border-transparent dark:border-accents-2"
     >
       <p>
         {labels.nodes.map(node => <span class="text-xs text-accents-5 mr-1">#{node.name}</span>)}
@@ -80,13 +81,38 @@ const date = formatDate(createdAt)
         <span>{date}</span>
       </p>
     </div>
-    <Markdown
-      class="w-full xl:w-1/2 p-4 shadow rounded-lg border border-solid border-transparent dark:border-accents-2"
-    >
+    <Markdown class="w-full p-4 shadow rounded-lg border border-solid border-transparent dark:border-accents-2">
       <Fragment set:html={bodyHTML} />
     </Markdown>
+
+    <div
+      class="w-full flex justify-center p-4 my-8 shadow rounded-lg border border-solid border-transparent dark:border-accents-2"
+    >
+      <Social />
+    </div>
   </main>
 </HtmlLayout>
+
+<style lang="scss" is:global>
+  body {
+    @apply max-w-[760px] xl:float-right relative p-8 box-content mx-auto;
+  }
+</style>
+
+<script>
+  let isRight = true
+  const centerViewBtn = document.querySelector<HTMLSpanElement>('.center-view-btn')!
+  centerViewBtn.addEventListener('click', () => {
+    isRight = !isRight
+    document.body.style.float = isRight ? '' : 'none'
+    centerViewBtn.innerText = isRight ? '居中浏览' : '右侧浏览'
+  })
+
+  const backToTopBtn = document.querySelector<HTMLSpanElement>('.back-to-top')!
+  backToTopBtn.addEventListener('click', () => {
+    document.scrollingElement?.scrollTo({ top: 0, behavior: 'smooth' })
+  })
+</script>
 
 <script
   is:inline
