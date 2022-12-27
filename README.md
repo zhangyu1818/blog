@@ -4,7 +4,7 @@
 
 [TailwindCSS](https://github.com/tailwindlabs/tailwindcss)
 
-需要先创建*.env*文件如下格式
+需要先创建 **.env** 文件如下格式
 
 ```
 REPO_OWNER=zhangyu1818
