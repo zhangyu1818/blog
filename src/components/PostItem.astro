@@ -15,7 +15,7 @@ const { number, title, labels, createdAt } = Astro.props
 const date = formatDate(createdAt)
 ---
 
-<a href={`/post/${number}`}>
+<a rel="prefetch" href={`/post/${number}`}>
   <div
     class="post-item shadow border border-solid border-transparent dark:border-accents-2 min-h-[280px] rounded-lg bg-accents-1 mb-8 flex flex-col duration-100"
   >

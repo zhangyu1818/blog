@@ -46,10 +46,10 @@ const date = formatDate(createdAt)
     <div
       class="xl:fixed xl:left-1/2 xl:-translate-x-full xl:top-8 py-4 px-8 flex flex-col text-end text-accents-5 gap-4"
     >
-      <a href=".." class="hover:text-accents-7">返回</a>
+      <a rel="prefetch" href=".." class="hover:text-accents-7">返回</a>
       {
         prev && (
-          <a class="flex flex-col gap-1 hover:text-accents-7 self-start" href={`/post/${prev.number}`}>
+          <a rel="prefetch" class="flex flex-col gap-1 hover:text-accents-7 self-start" href={`/post/${prev.number}`}>
             <Icon name="chevrons-left" />
             <span>{prev.title}</span>
           </a>
@@ -57,7 +57,11 @@ const date = formatDate(createdAt)
       }
       {
         next && (
-          <a class="flex flex-col items-end gap-1 hover:text-accents-7 self-end" href={`/post/${next.number}`}>
+          <a
+            rel="prefetch"
+            class="flex flex-col items-end gap-1 hover:text-accents-7 self-end"
+            href={`/post/${next.number}`}
+          >
             <span>{next.title}</span>
             <Icon name="chevrons-right" />
           </a>
