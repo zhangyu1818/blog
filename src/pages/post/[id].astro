@@ -42,7 +42,7 @@ const date = formatDate(createdAt)
 ---
 
 <HtmlLayout>
-  <HeadLayout slot="head" />
+  <HeadLayout slot="head" title={`${title} | zhangyu1818`} description={title} />
   <nav class="xl:fixed xl:top-8 xl:-translate-x-full py-4 px-8 flex flex-col text-accents-5 gap-4 mx-auto">
     <a rel="prefetch" href=".." class="self-end hover:text-accents-7">返回</a>
     <span class="hidden xl:block center-view-btn hover:text-accents-7 self-end" role="button">居中浏览</span>
