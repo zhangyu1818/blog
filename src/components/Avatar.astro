@@ -9,9 +9,9 @@
 <script>
   ;(() => {
     const avatarImg = document.querySelector<HTMLImageElement>('.avatar-img')!
-
+    if (getComputedStyle(avatarImg).display == 'none') return
     const img = new Image()
-    img.src = 'https://www.gravatar.com/avatar/27ee8db42e4599907f401b6c4ac546fc?s=512'
+    img.src = '/avatar.jpeg'
     img.onload = () => {
       avatarImg.style.backgroundImage = `url(${img.src})`
     }
