@@ -1,0 +1,11 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+export type Props = HTMLAttributes<'main'>
+
+const { class: className, ...attrs } = Astro.props
+---
+
+<main class:list={['m-auto flex max-w-[800px] flex-col gap-6 sm:gap-12 p-8', className]} {...attrs}>
+  <slot />
+</main>

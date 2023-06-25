@@ -2,10 +2,10 @@
 const { class: className } = Astro.props
 ---
 
-<div class:list={['markdown-body', className]}>
+<div class:list={['markdown-body !bg-transparent', className]}>
   <slot />
 </div>
 
-<style is:global>
+<style>
   @import 'github-markdown-css/github-markdown.css';
 </style>

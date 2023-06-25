@@ -1,0 +1,63 @@
+---
+import HeadLayout from '@layouts/base/HeadLayout.astro'
+import HtmlLayout from '@layouts/base/HtmlLayout.astro'
+import Header from '@components/Header.astro'
+import PageContainer from '@components/PageContainer.astro'
+import PostItem from '@components/PostItem.astro'
+
+import { queryAllLabels, queryPostsFromLabel } from '@services'
+
+import type { InferGetStaticPropsType, InferGetStaticParamsType } from 'astro'
+import Footer from '@components/Footer.astro'
+
+export async function getStaticPaths() {
+  const {
+    repository: {
+      labels: { nodes },
+    },
+  } = await queryAllLabels()
+
+  const labels = nodes.map(v => v.name)
+
+  const posts = await Promise.all(labels.map(label => queryPostsFromLabel({ label })))
+
+  return posts.map(item => {
+    const issues = item.repository.label.issues.nodes
+    const tag = item.repository.label.name
+    return {
+      params: {
+        tag,
+      },
+      props: {
+        posts: issues,
+      },
+    }
+  })
+}
+
+const { posts } = Astro.props as InferGetStaticPropsType<typeof getStaticPaths>
+const { tag } = Astro.params as InferGetStaticParamsType<typeof getStaticPaths>
+---
+
+<HtmlLayout>
+  <HeadLayout slot="head" />
+  <PageContainer class="min-h-[80vh]">
+    <Header sticky />
+    <section>
+      <h2 class="text-3xl font-semibold">Posts with the tag "{tag}"</h2>
+      <div class="w-full py-12">
+        {
+          posts.map(item => (
+            <PostItem
+              title={item.title}
+              number={item.number}
+              labels={item.labels.nodes}
+              createdAt={item.createdAt}
+            />
+          ))
+        }
+      </div>
+    </section>
+  </PageContainer>
+  <Footer />
+</HtmlLayout>

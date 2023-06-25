@@ -1,0 +1,19 @@
+<canvas class="absolute inset-0 bg-background fill-foreground" width="168" height="76" id="canvas"
+></canvas>
+
+<script>
+  import { createWave } from 'motion-wave'
+
+  const canvas = document.querySelector<HTMLCanvasElement>('#canvas')
+
+  if (canvas) {
+    const handler = createWave(document.querySelector('#canvas')!, {
+      frequency: 2.2,
+      phase: 1,
+      offset: 8,
+      amplitude: 12,
+      speed: 1.5,
+    })
+    handler.start()
+  }
+</script>

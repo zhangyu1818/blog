@@ -1,15 +1,13 @@
 ---
 import Markdown from './Markdown.astro'
-import Social from './Social.astro'
-import Avatar from './Avatar.astro'
 
 import { queryProfileREADME } from '../services'
+import Social from './Social.astro'
 
 const { data: profile } = await queryProfileREADME()
 ---
 
-<aside class="md:sticky md:top-0 py-8 lg:py-12 xl:py-16 md:h-screen flex flex-col xl:flex-none">
-  <Avatar />
+<aside class="flex flex-col gap-8">
   <Markdown class="flex-1 !bg-transparent">
     <div class="profile" set:html={profile} />
   </Markdown>
@@ -18,25 +16,6 @@ const { data: profile } = await queryProfileREADME()
 
 <style lang="scss" is:global>
   .profile {
-    a.anchor {
-      .octicon-link {
-        display: none;
-      }
-    }
-    code {
-      &::before,
-      &::after {
-        display: none;
-      }
-    }
-    img {
-      display: inline;
-      background: unset;
-      vertical-align: unset;
-    }
-
-    #user-content-github-stats {
-      display: none;
-    }
+    @apply text-sm;
   }
 </style>

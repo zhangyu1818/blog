@@ -1,0 +1,18 @@
+---
+import Section from './Section.astro'
+import Tags from './Tags.astro'
+import Icon from './Icon.astro'
+---
+
+<Section display="flex">
+  <span class="flex-1" slot="title">Top Tags</span>
+  <a
+    href="/tags"
+    class="flex cursor-pointer items-center text-sm text-accents-4 hover:underline"
+    slot="title"
+  >
+    view all tags
+    <Icon class="ml-1" name="chevrons-right" />
+  </a>
+  <Tags limit={5} />
+</Section>

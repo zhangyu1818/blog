@@ -1,0 +1,39 @@
+---
+import Wave from './Wave.astro'
+
+export interface Props {
+  sticky?: boolean
+  wave?: boolean
+}
+
+const { sticky, wave } = Astro.props
+---
+
+<nav
+  class:list={[
+    'flex flex-wrap px-[calc(50%_-_400px)] w-full items-center bg-background justify-between',
+    { 'sticky top-0': sticky },
+  ]}
+>
+  <h1 class="relative">
+    <a
+      class:list={[
+        'relative z-10 block p-6 text-xl font-bold',
+        { 'text-white mix-blend-difference': wave },
+      ]}
+      href="/">zhangyu.dev</a
+    >
+    {wave && <Wave />}
+  </h1>
+  <ul class="flex gap-8 py-6">
+    <li>
+      <a class:list={{ 'text-accents-5': Astro.url.pathname !== '/' }} href="/">Home</a>
+    </li>
+    <li>
+      <a class:list={{ 'text-accents-5': Astro.url.pathname !== '/post' }} href="/post">Posts</a>
+    </li>
+    <li>
+      <a class:list={{ 'text-accents-5': Astro.url.pathname !== '/tags' }} href="/tags">Tags</a>
+    </li>
+  </ul>
+</nav>

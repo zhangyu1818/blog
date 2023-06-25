@@ -1,14 +1,16 @@
 ---
-import HeadLayout from '../../layouts/base/HeadLayout.astro'
-import HtmlLayout from '../../layouts/base/HtmlLayout.astro'
-import Markdown from '../../components/Markdown.astro'
-import Icon from '../../components/Icon.astro'
-import Social from '../../components/Social.astro'
+import HeadLayout from '@layouts/base/HeadLayout.astro'
+import HtmlLayout from '@layouts/base/HtmlLayout.astro'
+import Markdown from '@components/Markdown.astro'
+import Header from '@components/Header.astro'
+import Social from '@components/Social.astro'
 
 import { queryPostsFromIssues } from '../../services'
 import { formatDate } from '../../utils'
+import { repoName, repoOwner } from 'blogConfig'
 
 import type { IssueContent } from '../../services/interface'
+import PageContainer from '@components/PageContainer.astro'
 
 type ExtraData = {
   prev: { number: number; title: string } | null
@@ -36,92 +38,44 @@ export async function getStaticPaths() {
   })
 }
 
-const { number, title, bodyHTML, labels, createdAt, url, prev, next } = Astro.props as IssueContent & ExtraData
+const { number, title, bodyHTML, labels, createdAt, url, prev, next } =
+  Astro.props as IssueContent & ExtraData
 
 const date = formatDate(createdAt)
 ---
 
 <HtmlLayout>
   <HeadLayout slot="head" title={`${title} | zhangyu1818`} description={title} />
-  <nav class="lg:fixed lg:top-8 lg:-translate-x-full pb-8 px-8 flex flex-col text-accents-5 gap-4 mx-auto">
-    <a rel="prefetch" href="/" class="self-end hover:text-accents-7">返回</a>
-    <span class="hidden xl:block center-view-btn hover:text-accents-7 self-end" role="button">居中浏览</span>
-    {
-      prev && (
-        <a rel="prefetch" class="flex flex-col gap-1 hover:text-accents-7 self-start" href={`/post/${prev.number}`}>
-          <Icon name="chevrons-left" />
-          <span>{prev.title}</span>
-        </a>
-      )
-    }
-    {
-      next && (
-        <a
-          rel="prefetch"
-          class="flex flex-col items-end gap-1 hover:text-accents-7 self-end"
-          href={`/post/${next.number}`}
-        >
-          <span>{next.title}</span>
-          <Icon name="chevrons-right" />
-        </a>
-      )
-    }
-    <span class="hidden back-to-top lg:block center-view-btn hover:text-accents-7 self-end" role="button">
-      返回顶部
-    </span>
-  </nav>
-  <main class="relative flex flex-col items-end">
-    <div
-      class="w-full p-4 bg-background shadow rounded-lg mb-8 border border-solid border-transparent dark:border-accents-2"
-    >
-      <p>
-        {labels.nodes.map(node => <span class="text-xs text-accents-5 mr-1">#{node.name}</span>)}
-      </p>
-      <h1 class="font-semibold text-3xl pb-2">{title}</h1>
-      <p class="text-sm text-accents-5 flex justify-between">
-        <a class="underline" href={url}>查看原文</a>
-        <span>{date}</span>
+  <PageContainer>
+    <Header />
+    <div class="mb-8 w-full bg-background">
+      <h1 class="pb-2 text-3xl font-semibold">{title}</h1>
+      <p class="flex justify-between text-sm text-accents-5">
+        <a class="underline" href={url}>View on Github</a>
+        <span class="text-xs">{date}</span>
       </p>
     </div>
-    <Markdown class="w-full p-4 shadow rounded-lg border border-solid border-transparent dark:border-accents-2">
+    <Markdown class="w-full">
       <Fragment set:html={bodyHTML} />
     </Markdown>
-
-    <div
-      class="w-full flex justify-center p-4 my-8 shadow rounded-lg border border-solid border-transparent dark:border-accents-2"
-    >
-      <Social />
-    </div>
-  </main>
+    <p class="self-start">
+      {
+        labels.nodes.map(node => (
+          <a href={`/tags/${node.name}`} class="mr-1 text-sm text-accents-5">
+            #{node.name}
+          </a>
+        ))
+      }
+    </p>
+    <Social class="self-start" />
+  </PageContainer>
 </HtmlLayout>
-
-<style>
-  body {
-    @apply max-w-[760px] lg:float-right p-8;
-  }
-</style>
-
-<script>
-  let isRight = true
-  const centerViewBtn = document.querySelector<HTMLSpanElement>('.center-view-btn')!
-  centerViewBtn.addEventListener('click', () => {
-    isRight = !isRight
-    document.body.style.float = isRight ? '' : 'none'
-    centerViewBtn.innerText = isRight ? '居中浏览' : '右侧浏览'
-  })
-
-  const backToTopBtn = document.querySelector<HTMLSpanElement>('.back-to-top')!
-  backToTopBtn.addEventListener('click', () => {
-    document.scrollingElement?.scrollTo({ top: 0, behavior: 'smooth' })
-  })
-</script>
 
 <script
   is:inline
   src="https://utteranc.es/client.js"
-  repo={`${import.meta.env.REPO_OWNER}/${import.meta.env.REPO_NAME}`}
+  repo={`${repoOwner}/${repoName}`}
   issue-number={number}
   theme="preferred-color-scheme"
   crossorigin="anonymous"
-  async
-></script>
+  async></script>

@@ -1,16 +1,18 @@
 import rss from '@astrojs/rss'
+
+import { repoOwner } from 'blogConfig'
 import { queryPostsFromIssues } from '../services'
 
-export const get = async () => {
+export const get = async (context: any) => {
   const {
     repository: {
       issues: { nodes },
     },
   } = await queryPostsFromIssues({ withContent: true })
   return rss({
-    title: import.meta.env.REPO_OWNER,
+    title: repoOwner,
     description: '一个关于前端开发和编程的博客。',
-    site: import.meta.env.SITE,
+    site: context.site,
     items: nodes.map(node => ({
       link: `/post/${node.number}`,
       title: node.title,

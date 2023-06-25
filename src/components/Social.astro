@@ -1,28 +1,54 @@
 ---
 import Icon from './Icon.astro'
 
-const { class: className } = Astro.props
+export interface Props {
+  class?: string
+  simple?: boolean
+}
+
+const { class: className, simple } = Astro.props
 ---
 
-<ul class:list={['flex', 'gap-4', 'whitespace-nowrap', className]}>
-  <li>
-    <a title="Github" class="flex items-center" href="https://github.com/zhangyu1818">
-      <Icon name="github" />
-      <span class="ml-4 mr-2">Github</span>
-      <Icon name="external-link" />
-    </a>
-  </li>
-  <li>
-    <a title="掘金" class="flex items-center" href="https://juejin.cn/user/4089838986339927">
-      <Icon name="juejin" />
-      <span class="ml-4 mr-2">掘金</span>
-      <Icon name="external-link" />
-    </a>
-  </li>
-  <li class="ml-16">
-    <a title="掘金" class="flex items-center" href="/rss.xml">
-      <Icon name="rss" />
-      <span class="ml-2">RSS</span>
-    </a>
-  </li>
-</ul>
+{
+  simple ? (
+    <div class:list={['text-accents-5', className]}>
+      <a class="block text-2xl transition hover:-translate-y-1" href="mailto:hey@zhangyu.dev">
+        hey@zhangyu.dev
+      </a>
+      <p class="mt-4 flex gap-4 text-2xl">
+        <a class="transition hover:-translate-y-1" href="https://github.com/zhangyu1818">
+          Github
+        </a>{' '}
+        /
+        <a class="transition hover:-translate-y-1" href="https://github.com/zhangyu1818">
+          掘金
+        </a>{' '}
+        /
+        <a class="transition hover:-translate-y-1" href="/rss.xml">
+          RSS
+        </a>
+      </p>
+    </div>
+  ) : (
+    <ul class:list={['flex gap-4 whitespace-nowrap text-sm', className]}>
+      <li>
+        <a title="Github" class="flex items-center" href="https://github.com/zhangyu1818">
+          <Icon name="github" />
+          <span class="ml-2">Github</span>
+        </a>
+      </li>
+      <li>
+        <a title="掘金" class="flex items-center" href="https://juejin.cn/user/4089838986339927">
+          <Icon name="juejin" />
+          <span class="ml-2">掘金</span>
+        </a>
+      </li>
+      <li>
+        <a title="RSS" class="flex items-center" href="/rss.xml">
+          <Icon name="rss" />
+          <span class="ml-2">RSS</span>
+        </a>
+      </li>
+    </ul>
+  )
+}

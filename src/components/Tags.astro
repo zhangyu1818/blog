@@ -1,0 +1,37 @@
+---
+import { queryAllLabels } from '@services'
+
+export interface Props {
+  limit?: number
+}
+
+const {
+  repository: {
+    labels: { nodes },
+  },
+} = await queryAllLabels()
+
+const { limit } = Astro.props
+
+let labels = nodes
+
+if (limit) {
+  labels = labels.slice(0, limit)
+}
+---
+
+<div class="flex flex-col gap-10">
+  <h2 class="text-2xl">All Tags</h2>
+  <ul class="flex w-full flex-wrap gap-4 text-accents-6">
+    {
+      labels.map(item => (
+        <li class="whitespace-nowrap transition hover:scale-110 hover:text-accents-7">
+          <a href={`/tags/${item.name}`}>
+            <span class="text-lg">#</span>
+            <span class="underline decoration-dashed underline-offset-4"> {item.name}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

@@ -1,0 +1,78 @@
+---
+import Icon from './Icon.astro'
+import Section from './Section.astro'
+import ItemContainer from './ItemContainer.astro'
+
+import { queryPinnedItems } from '@services'
+
+const {
+  user: {
+    pinnedItems: { nodes: pinnedItems },
+  },
+} = await queryPinnedItems()
+---
+
+<Section>
+  <span slot="title">Pinned</span>
+  {
+    pinnedItems.map(item => {
+      const language = item.languages.nodes[0]
+      return (
+        <ItemContainer class="pinned-item" data-homepage={item.homepageUrl || item.url}>
+          <p class="flex items-center gap-2">
+            <Icon class="text-base" name="book" />
+            <div>
+              <a href={item.url} target="_blank" class="text-sm font-semibold">
+                {item.name}
+              </a>
+            </div>
+            <span class="scale-90 rounded-[2em] border border-accents-3 px-[0.5em] lowercase first-letter:uppercase">
+              {item.visibility}
+            </span>
+            <span class="flex-1" />
+            <Icon
+              class="-translate-x-2 text-accents-5 opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100"
+              name="chevrons-right"
+            />
+          </p>
+          <p>{item.description}</p>
+          <div class="flex gap-5">
+            <div class="flex items-center">
+              <i
+                class="box-content inline-block h-2.5 w-2.5 rounded-full border border-[rgb(255,255,255,0.2)]"
+                style={`background: ${language.color};color: ${language.color};`}
+              />
+              <span class="ml-1">{language.name}</span>
+            </div>
+            {item.stargazerCount !== 0 && (
+              <div class="flex items-center">
+                <Icon class="text-base" name="star" />
+                <span class="ml-1">{item.stargazerCount}</span>
+              </div>
+            )}
+            {item.forkCount !== 0 && (
+              <div class="flex items-center">
+                <Icon class="text-base" name="fork" />
+                <span class="ml-1">{item.forkCount}</span>
+              </div>
+            )}
+          </div>
+        </ItemContainer>
+      )
+    })
+  }
+</Section>
+
+<script>
+  const pinnedItems = document.querySelectorAll<HTMLDivElement>('.pinned-item')
+  pinnedItems.forEach(item => {
+    const url = item.dataset.homepage
+    item.onclick = event => {
+      const target = event.target as HTMLElement
+      if (target.tagName === 'a') {
+        return
+      }
+      window.open(url, '_blank')
+    }
+  })
+</script>

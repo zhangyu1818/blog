@@ -1,10 +1,24 @@
 ---
 export interface Props {
-  name: 'github' | 'juejin' | 'external-link' | 'chevrons-left' | 'chevrons-right' | 'rss'
+  name:
+    | 'github'
+    | 'juejin'
+    | 'external-link'
+    | 'chevrons-left'
+    | 'chevrons-right'
+    | 'rss'
+    | 'book'
+    | 'star'
+    | 'fork'
+    | 'calendar'
+  class?: string
 }
 
-const { name } = Astro.props
-const { default: innerHTML } = await import(`../svg/${name}.svg?raw`)
+const { name, class: className } = Astro.props
+let { default: innerHTML } = await import(`../svg/${name}.svg?raw`)
+if (className) {
+  innerHTML = innerHTML.slice(0, 4) + ` class="${className}"` + innerHTML.slice(4)
+}
 ---
 
 <Fragment set:html={innerHTML} />

@@ -1,55 +1,23 @@
 ---
-import HtmlLayout from '../layouts/base/HtmlLayout.astro'
-import HeadLayout from '../layouts/base/HeadLayout.astro'
-import PostItem from '../components/PostItem.astro'
-import Profile from '../components/Profile.astro'
-
-import { queryPostsFromIssues } from '../services'
-
-const {
-  repository: {
-    issues: { nodes: posts },
-  },
-} = await queryPostsFromIssues({ withContent: false })
+import HtmlLayout from '@layouts/base/HtmlLayout.astro'
+import HeadLayout from '@layouts/base/HeadLayout.astro'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
+import PageContainer from '@components/PageContainer.astro'
+import Pinned from '@components/Pinned.astro'
+import Profile from '@components/Profile.astro'
+import LatestPosts from '@components/LatestPosts.astro'
+import TopTags from '@components/TopTags.astro'
 ---
 
 <HtmlLayout>
   <HeadLayout slot="head" />
-  <main
-    class="lg:w-3/4 lg:float-right px-8 lg:px-12 xl:px-16 flex justify-end flex-col md:flex-row md:gap-8 lg:gap-12 xl:gap-16"
-  >
+  <PageContainer>
+    <Header wave />
     <Profile />
-    <div class="py-8 lg:py-12 xl:py-16 post-list">
-      {
-        posts.map(post => (
-          <PostItem number={post.number} title={post.title} labels={post.labels.nodes} createdAt={post.createdAt} />
-        ))
-      }
-    </div>
-  </main>
+    <Pinned />
+    <LatestPosts />
+    <TopTags />
+  </PageContainer>
+  <Footer />
 </HtmlLayout>
-
-<script>
-  const eleFollowRotate = (ele: HTMLElement, rate: number = 20, shadow: boolean = false) => {
-    ele.onmousemove = event => {
-      const offsetY = (event.clientX - (ele.getBoundingClientRect().left + ele.offsetWidth / 2)) / ele.offsetWidth
-      const offsetX = (event.clientY - (ele.getBoundingClientRect().top + ele.offsetHeight / 2)) / ele.offsetHeight
-      const rotateY = (offsetY * rate) / 2
-      const rotateX = (-offsetX * rate) / 2
-      const translateY = offsetX * rate
-      const translateX = offsetY * rate
-      ele.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateY(${translateY}px) translateX(${translateX}px)`
-      if (shadow) ele.style.boxShadow = `${-translateX}px ${-translateY}px 30px 5px rgba(0, 0, 0, 0.2)`
-    }
-    ele.onmouseout = () => {
-      ele.style.transform = `rotateY(0deg) rotateX(0deg) translateY(0px) translateX(0px)`
-      if (shadow) ele.style.boxShadow = ''
-    }
-  }
-
-  const postItems = document.querySelectorAll<HTMLDivElement>('.post-item')!
-  const avatarImg = document.querySelector<HTMLImageElement>('.avatar-img')!
-
-  postItems.forEach(ele => eleFollowRotate(ele))
-  eleFollowRotate(avatarImg, 100, true)
-</script>

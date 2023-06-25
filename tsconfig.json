@@ -1,6 +1,15 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "esModuleInterop": true
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "blogConfig": ["blog.config.ts"],
+      "@services": ["src/services/index.ts"],
+      "@services/*": ["src/services/*"],
+      "@utils": ["src/utils/index.ts"]
+    }
   }
 }

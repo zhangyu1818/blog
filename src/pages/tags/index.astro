@@ -1,0 +1,17 @@
+---
+import Header from '@components/Header.astro'
+import PageContainer from '@components/PageContainer.astro'
+import HeadLayout from '@layouts/base/HeadLayout.astro'
+import HtmlLayout from '@layouts/base/HtmlLayout.astro'
+import TagList from '@components/Tags.astro'
+import Footer from '@components/Footer.astro'
+---
+
+<HtmlLayout>
+  <HeadLayout slot="head" />
+  <PageContainer class="min-h-[60vh]">
+    <Header />
+    <TagList />
+  </PageContainer>
+  <Footer />
+</HtmlLayout>

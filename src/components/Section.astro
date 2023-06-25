@@ -1,0 +1,24 @@
+---
+export interface Props {
+  display?: 'flex' | 'grid'
+}
+
+const { display = 'grid' } = Astro.props
+---
+
+<section class="w-full">
+  <h3 class="mb-4 flex">
+    <slot name="title" />
+  </h3>
+  <div
+    class:list={[
+      'gap-4',
+      {
+        'grid grid-cols-1 sm:grid-cols-2': display === 'grid',
+        'flex flex-col': display === 'flex',
+      },
+    ]}
+  >
+    <slot />
+  </div>
+</section>

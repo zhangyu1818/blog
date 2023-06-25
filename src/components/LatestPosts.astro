@@ -1,0 +1,46 @@
+---
+import Section from './Section.astro'
+import { queryPostsFromIssues } from '@services'
+import { formatDate } from '@utils'
+import ItemContainer from './ItemContainer.astro'
+import Icon from './Icon.astro'
+
+const {
+  repository: {
+    issues: { nodes: postItems },
+  },
+} = await queryPostsFromIssues({ first: 3, withContent: false })
+---
+
+<Section display="flex">
+  <span class="flex-1" slot="title">Latest Posts</span>
+  <a
+    href="/post"
+    class="flex cursor-pointer items-center text-sm text-accents-4 hover:underline"
+    slot="title"
+  >
+    view all posts
+    <Icon class="ml-1" name="chevrons-right" />
+  </a>
+  {
+    postItems.map(item => {
+      const labels = item.labels.nodes
+      return (
+        <a href={`/post/${item.number}`}>
+          <ItemContainer>
+            <span class="flex items-center text-xs text-accents-5">
+              <Icon class="mr-2" name="calendar" />
+              {formatDate(item.createdAt)}
+            </span>
+            <p class="text-sm font-semibold">{item.title}</p>
+            <div>
+              {labels.map(label => (
+                <span class="mr-2 py-1 text-xs text-accents-4">#{label.name}</span>
+              ))}
+            </div>
+          </ItemContainer>
+        </a>
+      )
+    })
+  }
+</Section>

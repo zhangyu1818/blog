@@ -2,6 +2,7 @@
 import { formatDate } from '../utils'
 
 import type { Label } from '../services/interface'
+import Icon from './Icon.astro'
 
 interface Props {
   number: number
@@ -16,15 +17,20 @@ const date = formatDate(createdAt)
 ---
 
 <a rel="prefetch" href={`/post/${number}`}>
-  <div
-    class="post-item shadow border border-solid border-transparent dark:border-accents-2 min-h-[280px] rounded-lg bg-accents-1 mb-8 flex flex-col duration-100"
-  >
-    <div class="flex-none p-4">
-      {labels.map(label => <span class="text-xs text-accents-5 py-1 mr-2">#{label.name}</span>)}
+  <div class="mb-8 flex flex-col gap-4">
+    <div class="flex-none">
+      {
+        labels.map(label => (
+          <a href={`/tags/${label.name}`} class="mr-2 text-xs text-accents-5">
+            #{label.name}
+          </a>
+        ))
+      }
     </div>
-    <div class="p-8 flex-1 flex flex-col items-center justify-center">
-      <h1 class="text-end text-2xl font-semibold">{title}</h1>
-    </div>
-    <span class="p-4 w-full text-end text-accents-6 text-sm">{date}</span>
+    <h1 class="font-semibold">{title}</h1>
+    <span class="flex items-center text-xs text-accents-5">
+      <Icon name="calendar" />
+      {date}
+    </span>
   </div>
 </a>
