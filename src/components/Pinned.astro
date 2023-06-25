@@ -21,11 +21,9 @@ const {
         <ItemContainer class="pinned-item" data-homepage={item.homepageUrl || item.url}>
           <p class="flex items-center gap-2">
             <Icon class="text-base" name="book" />
-            <div>
-              <a href={item.url} target="_blank" class="text-sm font-semibold">
-                {item.name}
-              </a>
-            </div>
+            <a href={item.url} target="_blank" class="text-sm font-semibold">
+              {item.name}
+            </a>
             <span class="scale-90 rounded-[2em] border border-accents-3 px-[0.5em] lowercase first-letter:uppercase">
               {item.visibility}
             </span>
@@ -69,7 +67,7 @@ const {
     const url = item.dataset.homepage
     item.onclick = event => {
       const target = event.target as HTMLElement
-      if (target.tagName === 'a') {
+      if (target.tagName === 'A') {
         return
       }
       window.open(url, '_blank')
