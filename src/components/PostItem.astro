@@ -21,9 +21,13 @@ const date = formatDate(createdAt)
     <div class="flex-none">
       {
         labels.map(label => (
-          <a href={`/tags/${label.name}`} class="mr-2 text-xs text-accents-5">
+          <span
+            role="button"
+            data-url={`/tags/${label.name}`}
+            class="tag-link mr-2 text-xs text-accents-5"
+          >
             #{label.name}
-          </a>
+          </span>
         ))
       }
     </div>
@@ -34,3 +38,15 @@ const date = formatDate(createdAt)
     </span>
   </div>
 </a>
+
+<script>
+  const tagLinks = document.querySelectorAll<HTMLElement>("[role='button'].tag-link")
+  tagLinks.forEach(tag => {
+    tag.onclick = event => {
+      event.stopPropagation()
+      const target = event.target as HTMLElement
+      const url = target.dataset.url
+      window.open(url)
+    }
+  })
+</script>
