@@ -47,7 +47,7 @@ export const queryPostsFromIssues = ({ first = 100, withContent, cursor }: Issue
               createdAt
               updatedAt
               url
-              bodyHTML @include(if: $withContent)
+              body @include(if: $withContent)
               labels(first: 5) {
                 nodes {
                   color
@@ -89,15 +89,6 @@ export const queryProfileREADME = () =>
     {
       owner: repoOwner,
     }
-  ).then(
-    ({
-      repository: {
-        object: { text },
-      },
-    }) =>
-      request('POST /markdown', {
-        text,
-      })
   )
 
 export const queryPinnedItems = () =>

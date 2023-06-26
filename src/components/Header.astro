@@ -7,6 +7,14 @@ export interface Props {
 }
 
 const { sticky, wave } = Astro.props
+
+const links = [
+  ['/', 'Home'],
+  ['/post', 'Posts'],
+  ['/tags', 'Tags'],
+]
+
+const currentPath = `/${Astro.url.pathname.split('/')[1]}`
 ---
 
 <nav
@@ -25,15 +33,21 @@ const { sticky, wave } = Astro.props
     >
     {wave && <Wave />}
   </h1>
-  <ul class="flex gap-8 py-6">
-    <li>
-      <a class:list={{ 'text-accents-5': Astro.url.pathname !== '/' }} href="/">Home</a>
-    </li>
-    <li>
-      <a class:list={{ 'text-accents-5': Astro.url.pathname !== '/post' }} href="/post">Posts</a>
-    </li>
-    <li>
-      <a class:list={{ 'text-accents-5': Astro.url.pathname !== '/tags' }} href="/tags">Tags</a>
-    </li>
+  <ul class="flex gap-8 py-6 text-accents-5">
+    {
+      links.map(([path, name]) => (
+        <li>
+          <a
+            class:list={[
+              'hover:text-foreground transition',
+              { 'text-foreground font-semibold': currentPath === path },
+            ]}
+            href={path}
+          >
+            {name}
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </nav>

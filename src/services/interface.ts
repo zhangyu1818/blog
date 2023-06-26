@@ -18,7 +18,7 @@ export interface IssueContent {
   updatedAt: string
   labels: Labels
   url: string
-  bodyHTML?: string
+  body?: string
 }
 
 export interface PinnedItems {

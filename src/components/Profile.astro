@@ -1,18 +1,25 @@
 ---
 import Markdown from './Markdown.astro'
-
-import { queryProfileREADME } from '../services'
 import Social from './Social.astro'
 
-const { data: profile } = await queryProfileREADME()
+import { parseMarkdown } from '@utils'
+import { queryProfileREADME } from '@services'
+
+const {
+  repository: {
+    object: { text },
+  },
+} = await queryProfileREADME()
+
+const markdown = await parseMarkdown(text, false)
 ---
 
-<aside class="flex flex-col gap-8">
+<section class="flex flex-col gap-8">
   <Markdown class="flex-1 !bg-transparent">
-    <div class="profile" set:html={profile} />
+    <div class="profile" set:html={markdown} />
   </Markdown>
   <Social />
-</aside>
+</section>
 
 <style lang="scss" is:global>
   .profile {
