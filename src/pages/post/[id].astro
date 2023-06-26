@@ -48,26 +48,30 @@ const date = formatDate(createdAt)
   <HeadLayout slot="head" title={`${title} | zhangyu1818`} description={title} />
   <PageContainer>
     <Header />
-    <div class="mb-8 w-full bg-background">
-      <h1 class="pb-2 text-3xl font-semibold">{title}</h1>
-      <p class="flex justify-between text-sm text-accents-5">
-        <a class="underline" href={url}>View on Github</a>
-        <span class="text-xs">{date}</span>
+    <article
+      class="flex flex-col gap-8 rounded-md border border-accents-3 bg-accents-1 p-6 dark:border-0"
+    >
+      <div class="mb-8 w-full">
+        <h1 class="pb-2 text-3xl font-semibold">{title}</h1>
+        <p class="flex justify-between text-sm text-accents-5">
+          <a class="underline" href={url}>View on Github</a>
+          <span class="text-xs">{date}</span>
+        </p>
+      </div>
+      <Markdown class="w-full !bg-transparent">
+        <Fragment set:html={bodyHTML} />
+      </Markdown>
+      <p class="self-start">
+        {
+          labels.nodes.map(node => (
+            <a href={`/tags/${node.name}`} class="mr-1 text-sm text-accents-5">
+              #{node.name}
+            </a>
+          ))
+        }
       </p>
-    </div>
-    <Markdown class="w-full">
-      <Fragment set:html={bodyHTML} />
-    </Markdown>
-    <p class="self-start">
-      {
-        labels.nodes.map(node => (
-          <a href={`/tags/${node.name}`} class="mr-1 text-sm text-accents-5">
-            #{node.name}
-          </a>
-        ))
-      }
-    </p>
-    <Social class="self-start" />
+      <Social class="self-start" />
+    </article>
   </PageContainer>
 </HtmlLayout>
 
