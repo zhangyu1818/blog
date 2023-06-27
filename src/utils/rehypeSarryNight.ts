@@ -32,7 +32,7 @@ const rehypeStarryNight: Plugin = () => {
 
       if (!Array.isArray(classes)) return
 
-      const language = classes.find((d: any) => typeof d === 'string' && d.startsWith(prefix))
+      const language = classes.find((d: unknown) => typeof d === 'string' && d.startsWith(prefix))
 
       if (typeof language !== 'string') return
 
@@ -42,7 +42,7 @@ const rehypeStarryNight: Plugin = () => {
       if (!scope) return
 
       const fragment = starryNight.highlight(toString(head), scope)
-      const children = /** @type {Array<ElementContent>} */ fragment.children
+      const children = fragment.children
 
       parent.children.splice(index, 1, {
         type: 'element',
