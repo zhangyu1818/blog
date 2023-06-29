@@ -37,24 +37,30 @@ export async function getStaticPaths() {
 
 const { posts } = Astro.props as InferGetStaticPropsType<typeof getStaticPaths>
 const { tag } = Astro.params as InferGetStaticParamsType<typeof getStaticPaths>
+
+const isEmpty = posts.length === 0
 ---
 
 <HtmlLayout>
   <HeadLayout slot="head" />
   <PageContainer class="min-h-[80vh]">
-    <Header sticky />
+    <Header />
     <section>
       <h2 class="text-3xl font-semibold">Posts with the tag "{tag}"</h2>
       <div class="w-full py-12">
         {
-          posts.map(item => (
-            <PostItem
-              title={item.title}
-              number={item.number}
-              labels={item.labels.nodes}
-              createdAt={item.createdAt}
-            />
-          ))
+          isEmpty ? (
+            <p class="py-8 text-2xl">Hey! It looks like we need some new posts.</p>
+          ) : (
+            posts.map(item => (
+              <PostItem
+                title={item.title}
+                number={item.number}
+                labels={item.labels.nodes}
+                createdAt={item.createdAt}
+              />
+            ))
+          )
         }
       </div>
     </section>

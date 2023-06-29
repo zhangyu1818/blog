@@ -8,7 +8,7 @@ const { class: className, ...attrs } = Astro.props
 
 <div
   class:list={[
-    "group relative flex cursor-pointer flex-col gap-2 p-4 text-xs text-accents-6 before:absolute before:inset-0 before:-z-10 before:rounded-md before:border before:border-accents-2 before:bg-accents-1 before:transition before:content-['_'] hover:before:scale-[1.03] dark:before:border-0",
+    "group relative flex cursor-pointer flex-col gap-2 p-4 text-xs text-accents-6 before:absolute before:inset-0 before:transition-colors before:-z-10 before:rounded-md before:border before:border-accents-2 before:bg-accents-1 before:transition-transform before:content-['_'] hover:before:scale-[1.03] dark:before:border-0",
     className,
   ]}
   {...attrs}

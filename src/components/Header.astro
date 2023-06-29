@@ -1,12 +1,12 @@
 ---
 import Wave from './Wave.astro'
+import ThemeSwitcher from './ThemeSwitcher.astro'
 
 export interface Props {
-  sticky?: boolean
   wave?: boolean
 }
 
-const { sticky, wave } = Astro.props
+const { wave } = Astro.props
 
 const links = [
   ['/', 'Home'],
@@ -17,23 +17,18 @@ const links = [
 const currentPath = `/${Astro.url.pathname.split('/')[1]}`
 ---
 
-<nav
-  class:list={[
-    'flex flex-wrap px-[calc(50%_-_400px)] w-full items-center bg-background justify-between',
-    { 'sticky top-0': sticky },
-  ]}
->
+<nav class="flex w-full flex-wrap items-center px-[calc(50%_-_400px)]">
   <h1 class="relative">
     <a
       class:list={[
-        'relative z-10 block p-6 text-xl font-bold',
-        { 'text-white mix-blend-difference': wave },
+        'relative z-10 block py-6 text-xl font-bold',
+        { 'text-white mix-blend-difference px-6': wave },
       ]}
       href="/">zhangyu.dev</a
     >
     {wave && <Wave />}
   </h1>
-  <ul class="flex gap-8 py-6 text-accents-5">
+  <ul class="mr-6 flex flex-1 justify-end gap-8 py-6 text-accents-5 sm:mr-12">
     {
       links.map(([path, name]) => (
         <li>
@@ -50,4 +45,5 @@ const currentPath = `/${Astro.url.pathname.split('/')[1]}`
       ))
     }
   </ul>
+  <ThemeSwitcher />
 </nav>

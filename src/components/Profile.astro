@@ -15,14 +15,8 @@ const markdown = await parseMarkdown(text, false)
 ---
 
 <section class="flex flex-col gap-8">
-  <Markdown class="flex-1 !bg-transparent">
-    <div class="profile" set:html={markdown} />
+  <Markdown class="flex-1">
+    <div class="text-sm" set:html={markdown} />
   </Markdown>
   <Social />
 </section>
-
-<style lang="scss" is:global>
-  .profile {
-    @apply text-sm;
-  }
-</style>

@@ -1,0 +1,46 @@
+@font-face {
+  font-family: 'OpenSans';
+  src: url('/fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url('/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+.dark img,
+.dark [role='img'] {
+  filter: brightness(0.8);
+}
+
+:root.dark {
+  --foreground: theme('colors.zinc.50');
+  --background: theme('colors.zinc.900');
+  --accents-1: theme('colors.zinc.800');
+  --accents-2: theme('colors.zinc.700');
+  --accents-3: theme('colors.zinc.600');
+  --accents-4: theme('colors.zinc.500');
+  --accents-5: theme('colors.zinc.400');
+  --accents-6: theme('colors.zinc.300');
+  --accents-7: theme('colors.zinc.200');
+  --accents-8: theme('colors.zinc.100');
+}
+
+:root {
+  --foreground: theme('colors.zinc.900');
+  --background: theme('colors.white');
+  --accents-1: theme('colors.zinc.50');
+  --accents-2: theme('colors.zinc.100');
+  --accents-3: theme('colors.zinc.200');
+  --accents-4: theme('colors.zinc.400');
+  --accents-5: theme('colors.zinc.500');
+  --accents-6: theme('colors.zinc.600');
+  --accents-7: theme('colors.zinc.700');
+  --accents-8: theme('colors.zinc.800');
+}

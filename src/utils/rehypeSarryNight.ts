@@ -53,7 +53,16 @@ const rehypeStarryNight: Plugin = () => {
             'highlight-' + scope.replace(/^source\./, '').replace(/\./g, '-'),
           ],
         },
-        children: [{ type: 'element', tagName: 'pre', properties: {}, children }],
+        children: [
+          {
+            type: 'element',
+            tagName: 'pre',
+            properties: {
+              className: ['transition-colors'],
+            },
+            children,
+          },
+        ],
       })
     })
   }
