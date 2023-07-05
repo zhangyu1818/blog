@@ -22,6 +22,9 @@ dependencies:
   astro:
     specifier: ^2.7.0
     version: 2.7.0
+  bg-css:
+    specifier: ^1.0.1
+    version: 1.0.1
   dayjs:
     specifier: ^1.11.7
     version: 1.11.7
@@ -1528,6 +1531,13 @@ packages:
     resolution:
       {
         integrity: sha512-gbIqZ/eslnUFC1tjEvtz0sgx+xTK20wDnYMIA27VA04R7w6xxXQPZDbibjA9DTWZRA2CXtwHykkVzlCaAJAZig==,
+      }
+    dev: false
+
+  /bg-css@1.0.1:
+    resolution:
+      {
+        integrity: sha512-RKf56pDIlaD0hIB2mrAbMJnR62OJ8bL6gpMgYmW83tHdvKZA2ajBIApRtFADisipY8urr8geBzXbQGzDutV/lA==,
       }
     dev: false
 

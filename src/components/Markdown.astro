@@ -2,7 +2,7 @@
 const { class: className } = Astro.props
 ---
 
-<div class:list={['markdown-body transition-colors !bg-transparent', className]}>
+<div class:list={['markdown-body transition-colors duration-1000 !bg-transparent', className]}>
   <slot />
 </div>
 

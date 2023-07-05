@@ -18,7 +18,7 @@ const currentPath = `/${Astro.url.pathname.split('/')[1]}`
 ---
 
 <nav class="flex w-full flex-wrap items-center px-[calc(50%_-_400px)]">
-  <h1 class="relative">
+  <h1 class="relative transition-colors duration-700">
     <a
       class:list={[
         'relative z-10 block py-6 text-xl font-bold',
@@ -35,7 +35,10 @@ const currentPath = `/${Astro.url.pathname.split('/')[1]}`
           <a
             class:list={[
               'hover:text-foreground transition',
-              { 'text-foreground font-semibold': currentPath === path },
+              {
+                'text-foreground font-semibold transition-colors duration-700':
+                  currentPath === path,
+              },
             ]}
             href={path}
           >

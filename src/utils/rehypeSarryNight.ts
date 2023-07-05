@@ -58,7 +58,7 @@ const rehypeStarryNight: Plugin = () => {
             type: 'element',
             tagName: 'pre',
             properties: {
-              className: ['transition-colors'],
+              className: ['transition-colors', 'duration-700', 'ease-in-out'],
             },
             children,
           },

@@ -19,6 +19,7 @@
     "@octokit/core": "^4.2.4",
     "@zhangyu1818/github-markdown-css": "^5.2.0",
     "astro": "^2.7.0",
+    "bg-css": "^1.0.1",
     "dayjs": "^1.11.7",
     "motion-wave": "^0.0.4",
     "tailwindcss": "^3.3.2"

@@ -1,6 +1,6 @@
 <button
   id="theme-switcher"
-  class="relative h-[18px] w-[18px] leading-[0] before:absolute before:left-1/2 before:top-1/2 before:z-10 before:h-3.5 before:w-3.5 before:translate-x-[-50%] before:translate-y-[-50%] before:rounded-full before:bg-background before:transition-colors before:duration-1000 before:content-['_'] after:absolute after:-inset-3 after:content-['_']"
+  class="relative h-[18px] w-[18px] leading-[0] before:absolute before:left-1/2 before:top-1/2 before:z-10 before:h-3.5 before:w-3.5 before:translate-x-[-50%] before:translate-y-[-50%] before:rounded-full before:bg-background before:duration-1000 before:content-['_'] after:absolute after:-inset-3 after:content-['_']"
 >
   <span
     class="theme-block inline-block h-full w-full bg-accents-8 after:absolute after:inset-0 after:rotate-45 after:bg-inherit after:content-['_'] dark:bg-accents-4"
@@ -13,6 +13,12 @@
 </button>
 
 <style is:global>
+  @import 'bg-css/style.css';
+  div.theme-bg {
+    --theme-bg-light: theme('colors.white');
+    --theme-bg-dark: theme('colors.zinc.900');
+  }
+
   .theme-block {
     transform: rotate(0);
     transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -31,29 +37,51 @@
   }
 </style>
 
-<script>
-  const initialDark =
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+<script is:inline>
+  const storageTheme = localStorage.getItem('theme')
 
-  let dark = initialDark
+  const darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
-  const setTheme = (dark: boolean) => {
-    if (dark) {
-      localStorage.setItem('theme', 'dark')
-      document.documentElement.classList.add('dark')
-    } else {
-      localStorage.setItem('theme', 'light')
-      document.documentElement.classList.remove('dark')
+  let currentShouldDark = darkQuery.matches
+
+  let isDark =
+    (currentShouldDark && (storageTheme === null || storageTheme === 'auto')) ||
+    storageTheme === 'dark'
+
+  setClass(isDark)
+
+  function toggleTheme() {
+    isDark = !isDark
+    setClass(isDark)
+    const next = isDark
+      ? currentShouldDark
+        ? 'auto'
+        : 'dark'
+      : currentShouldDark
+      ? 'light'
+      : 'auto'
+
+    localStorage.setItem('theme', next)
+  }
+
+  function setClass(dark) {
+    document.documentElement.classList[dark ? 'add' : 'remove']('dark')
+  }
+
+  darkQuery.onchange = e => {
+    const current = localStorage.getItem('theme')
+    if (current === 'auto') {
+      isDark = e.matches
+      setClass(isDark)
+    }
+
+    if (e.matches) {
+      currentShouldDark = true
     }
   }
 
-  setTheme(initialDark)
-
-  const btn = document.querySelector<HTMLButtonElement>('#theme-switcher')!
-
-  btn.addEventListener('click', () => {
-    dark = !dark
-    setTheme(dark)
-  })
+  const btn = document.querySelector('#theme-switcher')
+  btn.onclick = () => {
+    toggleTheme()
+  }
 </script>
