@@ -1,10 +1,7 @@
----
-import 'bg-css/style.css'
----
-
 <button
   id="theme-switcher"
-  class="relative h-[18px] w-[18px] leading-[0] before:absolute before:left-1/2 before:top-1/2 before:z-10 before:h-3.5 before:w-3.5 before:translate-x-[-50%] before:translate-y-[-50%] before:rounded-full before:bg-background before:duration-1000 before:content-['_'] after:absolute after:-inset-3 after:content-['_']"
+  aria-label="theme switch"
+  class="relative h-[18px] w-[18px] leading-[0] before:absolute before:left-1/2 before:top-1/2 before:z-10 before:h-3.5 before:w-3.5 before:translate-x-[-50%] before:translate-y-[-50%] before:rounded-full before:bg-background before:content-['_'] after:absolute after:-inset-3 after:content-['_']"
 >
   <span
     class="theme-block inline-block h-full w-full bg-accents-8 after:absolute after:inset-0 after:rotate-45 after:bg-inherit after:content-['_'] dark:bg-accents-4"
@@ -17,11 +14,6 @@ import 'bg-css/style.css'
 </button>
 
 <style is:global>
-  div.theme-bg {
-    --theme-bg-light: theme('colors.white');
-    --theme-bg-dark: theme('colors.zinc.900');
-  }
-
   .theme-block {
     transform: rotate(0);
     transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);

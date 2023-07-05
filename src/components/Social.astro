@@ -30,12 +30,7 @@ const { class: className, simple } = Astro.props
       </p>
     </div>
   ) : (
-    <ul
-      class:list={[
-        'flex gap-4 whitespace-nowrap transition-colors duration-700 text-sm',
-        className,
-      ]}
-    >
+    <ul class:list={['flex gap-4 whitespace-nowrap  text-sm', className]}>
       <li>
         <a title="Github" class="flex items-center" href="https://github.com/zhangyu1818">
           <Icon name="github" />
