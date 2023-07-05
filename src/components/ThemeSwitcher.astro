@@ -1,3 +1,7 @@
+---
+import 'bg-css/style.css'
+---
+
 <button
   id="theme-switcher"
   class="relative h-[18px] w-[18px] leading-[0] before:absolute before:left-1/2 before:top-1/2 before:z-10 before:h-3.5 before:w-3.5 before:translate-x-[-50%] before:translate-y-[-50%] before:rounded-full before:bg-background before:duration-1000 before:content-['_'] after:absolute after:-inset-3 after:content-['_']"
@@ -13,7 +17,6 @@
 </button>
 
 <style is:global>
-  @import 'bg-css/style.css';
   div.theme-bg {
     --theme-bg-light: theme('colors.white');
     --theme-bg-dark: theme('colors.zinc.900');

@@ -1,11 +1,9 @@
 ---
+import '@zhangyu1818/github-markdown-css/github-markdown.css'
+
 const { class: className } = Astro.props
 ---
 
 <div class:list={['markdown-body transition-colors duration-1000 !bg-transparent', className]}>
   <slot />
 </div>
-
-<style is:global>
-  @import '@zhangyu1818/github-markdown-css/github-markdown.css';
-</style>
