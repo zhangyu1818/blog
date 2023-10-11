@@ -9,11 +9,12 @@ import type {
   PinnedItems,
 } from './interface'
 
-const { graphql, request } = new Octokit({ auth: import.meta.env.GITHUB_TOKEN })
+const { graphql } = new Octokit({ auth: import.meta.env.GITHUB_TOKEN })
 
 type IssuesQueryParams = {
   first?: number
-  withContent: boolean
+  withContent?: boolean
+  withHtml?: boolean
   cursor?: string
 }
 
@@ -23,7 +24,12 @@ type LabelQueryParams = {
   cursor?: string
 }
 
-export const queryPostsFromIssues = ({ first = 100, withContent, cursor }: IssuesQueryParams) =>
+export const queryPostsFromIssues = ({
+  first = 100,
+  withContent = false,
+  withHtml = false,
+  cursor,
+}: IssuesQueryParams) =>
   graphql<RepositoryIssues>(
     `
       query queryPostsFromIssues(
@@ -31,6 +37,7 @@ export const queryPostsFromIssues = ({ first = 100, withContent, cursor }: Issue
         $owner: String!
         $name: String!
         $withContent: Boolean!
+        $withHtml: Boolean!
         $cursor: String
       ) {
         repository(owner: $owner, name: $name) {
@@ -48,6 +55,7 @@ export const queryPostsFromIssues = ({ first = 100, withContent, cursor }: Issue
               updatedAt
               url
               body @include(if: $withContent)
+              bodyHTML @include(if: $withHtml)
               labels(first: 5) {
                 nodes {
                   color
@@ -69,6 +77,7 @@ export const queryPostsFromIssues = ({ first = 100, withContent, cursor }: Issue
       owner: repoOwner,
       name: repoName,
       withContent,
+      withHtml,
       cursor,
     }
   )

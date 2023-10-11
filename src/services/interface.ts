@@ -19,6 +19,7 @@ export interface IssueContent {
   labels: Labels
   url: string
   body?: string
+  bodyHTML?: string
 }
 
 export interface PinnedItems {

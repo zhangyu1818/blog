@@ -44,3 +44,8 @@
   --accents-7: theme('colors.zinc.700');
   --accents-8: theme('colors.zinc.800');
 }
+
+.markdown-body ul,
+.markdown-body ol {
+  list-style: revert;
+}

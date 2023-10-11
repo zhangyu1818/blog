@@ -1,14 +1,16 @@
 import rss from '@astrojs/rss'
 
 import { repoOwner } from 'blogConfig'
-import { queryPostsFromIssues } from '../services'
+
+import { queryPostsFromIssues } from '@services'
 
 export const get = async (context: any) => {
   const {
     repository: {
       issues: { nodes },
     },
-  } = await queryPostsFromIssues({ withContent: true })
+  } = await queryPostsFromIssues({ withHtml: true })
+
   return rss({
     title: repoOwner,
     description: '一个关于前端开发和编程的博客。',

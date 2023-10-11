@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions'
+
 interface Props {
   title?: string
   description?: string
@@ -8,12 +10,14 @@ const { title = 'zhangyu1818', description = 'zhangyu1818的博客' } = Astro.pr
 
 <head>
   <title>{title}</title>
+  <ViewTransitions />
   <meta charset="utf-8" />
   <meta name="description" content={description} />
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
   <meta name="google-site-verification" content="-EgIoAC_kAmCy86ZteXPlEBcl3e76-DVX3HLjXhRudg" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
