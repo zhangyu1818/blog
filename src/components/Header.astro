@@ -18,7 +18,7 @@ const currentPath = `/${Astro.url.pathname.split('/')[1]}`
 ---
 
 <nav class="flex w-full flex-wrap items-center px-[calc(50%_-_400px)]">
-  <h1 class="relative">
+  <h1 class="relative hidden sm:block">
     <a
       class:list={[
         'relative z-10 block py-6 text-xl font-bold',
@@ -28,7 +28,7 @@ const currentPath = `/${Astro.url.pathname.split('/')[1]}`
     >
     {wave && <Wave />}
   </h1>
-  <ul class="mr-6 flex flex-1 justify-end gap-8 py-6 text-accents-5 sm:mr-12">
+  <ul class="mr-4 flex flex-1 gap-4 py-6 text-accents-5 sm:mr-12 sm:justify-end md:mr-6 md:gap-8">
     {
       links.map(([path, name]) => (
         <li>
