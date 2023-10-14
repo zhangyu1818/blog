@@ -1,5 +1,11 @@
 import dayjs from 'dayjs'
 
-export const formatDate = (date: string) => dayjs(date).format('MMM DD, YYYY')
+import 'dayjs/locale/zh-cn'
+import 'dayjs/locale/en'
+
+export const formatDate = (date: string, lang: string) =>
+  dayjs(date).locale(lang).format('MMM DD, YYYY')
 
 export { parseMarkdown } from './markdown'
+
+export * from './lang'

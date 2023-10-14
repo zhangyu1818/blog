@@ -82,12 +82,12 @@ export const queryPostsFromIssues = ({
     }
   )
 
-export const queryProfileREADME = () =>
+export const queryProfileREADME = (lang: string = '') =>
   graphql<RepositoryFile>(
     `
-      query queryProfileREADME($owner: String!) {
+      query queryProfileREADME($owner: String!, $file: String!) {
         repository(owner: $owner, name: $owner) {
-          object(expression: "master:README.md") {
+          object(expression: $file) {
             ... on Blob {
               text
             }
@@ -97,6 +97,7 @@ export const queryProfileREADME = () =>
     `,
     {
       owner: repoOwner,
+      file: 'master:' + (lang ? `README.${lang}.md` : 'README.md'),
     }
   )
 

@@ -1,4 +1,6 @@
 ---
+import { getLangFromUrl, langPrefix, useTranslations, normalizeUrl } from '@utils'
+
 import Wave from './Wave.astro'
 import ThemeSwitcher from './ThemeSwitcher.astro'
 
@@ -8,13 +10,17 @@ export interface Props {
 
 const { wave } = Astro.props
 
+const lang = getLangFromUrl(Astro.url)
+const [addPrefix] = langPrefix(lang)
+const t = useTranslations(lang)
+
 const links = [
-  ['/', 'Home'],
-  ['/post', 'Posts'],
-  ['/tags', 'Tags'],
+  [addPrefix('/'), t('nav.home')],
+  [addPrefix('/post'), t('nav.posts')],
+  [addPrefix('/tags'), t('nav.tags')],
 ]
 
-const currentPath = `/${Astro.url.pathname.split('/')[1]}`
+const currentPath = normalizeUrl(Astro.url.pathname)
 ---
 
 <nav class="flex w-full flex-wrap items-center px-[calc(50%_-_400px)]">
@@ -24,7 +30,7 @@ const currentPath = `/${Astro.url.pathname.split('/')[1]}`
         'relative z-10 block py-6 text-xl font-bold',
         { 'text-white mix-blend-difference px-6': wave },
       ]}
-      href="/">zhangyu.dev</a
+      href={addPrefix('/')}>zhangyu.dev</a
     >
     {wave && <Wave />}
   </h1>

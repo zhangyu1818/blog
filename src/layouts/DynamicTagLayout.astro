@@ -1,0 +1,50 @@
+---
+import HeadLayout from '@layouts/base/HeadLayout.astro'
+import HtmlLayout from '@layouts/base/HtmlLayout.astro'
+import Header from '@components/Header.astro'
+import PageContainer from '@components/PageContainer.astro'
+import PostItem from '@components/PostItem.astro'
+import Footer from '@components/Footer.astro'
+
+import { getLangFromUrl, useTranslations } from '@utils'
+
+import type { IssueContent } from '@services/interface'
+
+// TODO types
+const { posts, tag } = Astro.props as { posts: IssueContent[]; tag: string }
+
+const isEmpty = posts.length === 0
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<HtmlLayout>
+  <HeadLayout slot="head" />
+  <PageContainer class="min-h-[80vh]">
+    <Header />
+    <section>
+      <h2 class="text-3xl font-semibold">
+        {t('posts.with.tag')}&nbsp;
+        <span class="italic">"{tag}"</span>
+      </h2>
+      <div class="w-full py-12">
+        {
+          isEmpty ? (
+            <p class="py-8 text-2xl">Hey! It looks like we need some new posts.</p>
+          ) : (
+            posts.map(item => (
+              <PostItem
+                title={item.title}
+                number={item.number}
+                labels={item.labels.nodes}
+                createdAt={item.createdAt}
+              />
+            ))
+          )
+        }
+      </div>
+    </section>
+  </PageContainer>
+  <Footer />
+</HtmlLayout>

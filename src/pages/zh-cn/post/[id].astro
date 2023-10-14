@@ -42,7 +42,7 @@ const {
   // next,
 } = Astro.props as IssueContent & ExtraData
 
-const props = { number, title, body, labels, createdAt, url }
+const props = { number, title, labels, url, body, createdAt }
 ---
 
 <DynamicPostLayout {...props} />

@@ -1,0 +1,32 @@
+---
+import HeadLayout from '@layouts/base/HeadLayout.astro'
+import HtmlLayout from '@layouts/base/HtmlLayout.astro'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
+import PageContainer from '@components/PageContainer.astro'
+import PostItem from '@components/PostItem.astro'
+
+import type { IssueContent } from '@services/interface'
+
+const { posts } = Astro.props as { posts: IssueContent[] }
+---
+
+<HtmlLayout>
+  <HeadLayout slot="head" />
+  <Header />
+  <PageContainer>
+    <section class="w-full py-12">
+      {
+        posts.map(item => (
+          <PostItem
+            title={item.title}
+            number={item.number}
+            labels={item.labels.nodes}
+            createdAt={item.createdAt}
+          />
+        ))
+      }
+    </section>
+  </PageContainer>
+  <Footer />
+</HtmlLayout>

@@ -1,4 +1,5 @@
 ---
+import { getLangFromUrl, langPrefix } from '@utils'
 import { queryAllLabels } from '@services'
 
 export interface Props {
@@ -18,13 +19,16 @@ let labels = nodes
 if (limit) {
   labels = labels.slice(0, limit)
 }
+
+const lang = getLangFromUrl(Astro.url)
+const [addPrefix] = langPrefix(lang)
 ---
 
 <ul class="flex w-full flex-wrap gap-4 text-accents-6">
   {
     labels.map(item => (
       <li class="whitespace-nowrap transition hover:scale-110 hover:text-accents-7">
-        <a href={`/tags/${item.name}`}>
+        <a href={addPrefix(`/tags/${item.name}`)}>
           <span class="text-lg">#</span>
           <span class="underline decoration-dashed underline-offset-4"> {item.name}</span>
         </a>

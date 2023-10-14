@@ -12,7 +12,8 @@
       "blogConfig": ["blog.config.ts"],
       "@services": ["src/services/index.ts"],
       "@services/*": ["src/services/*"],
-      "@utils": ["src/utils/index.ts"]
+      "@utils": ["src/utils/index.ts"],
+      "@i18n/*": ["src/i18n/*"]
     }
   }
 }

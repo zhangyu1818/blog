@@ -1,0 +1,23 @@
+---
+import HtmlLayout from '@layouts/base/HtmlLayout.astro'
+import HeadLayout from '@layouts/base/HeadLayout.astro'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
+import PageContainer from '@components/PageContainer.astro'
+import Pinned from '@components/Pinned.astro'
+import Profile from '@components/Profile.astro'
+import LatestPosts from '@components/LatestPosts.astro'
+import TopTags from '@components/TopTags.astro'
+---
+
+<HtmlLayout>
+  <HeadLayout slot="head" />
+  <PageContainer>
+    <Header wave />
+    <Profile />
+    <Pinned />
+    <LatestPosts />
+    <TopTags />
+  </PageContainer>
+  <Footer />
+</HtmlLayout>

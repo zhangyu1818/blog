@@ -4,16 +4,21 @@ import Section from './Section.astro'
 import ItemContainer from './ItemContainer.astro'
 
 import { queryPinnedItems } from '@services'
+import { getLangFromUrl, useTranslations } from '@utils'
 
 const {
   user: {
     pinnedItems: { nodes: pinnedItems },
   },
 } = await queryPinnedItems()
+
+const lang = getLangFromUrl(Astro.url)
+
+const t = useTranslations(lang)
 ---
 
 <Section>
-  <span slot="title">Pinned</span>
+  <span slot="title">{t('pinned.name')}</span>
   {
     pinnedItems.map(item => {
       const language = item.languages.nodes[0]

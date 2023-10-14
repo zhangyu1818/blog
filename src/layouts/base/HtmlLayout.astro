@@ -1,4 +1,14 @@
-<html lang="zh-Hans">
+---
+import { getLangFromUrl } from '@utils'
+/**
+ * TODO official i18n
+ * https://github.com/withastro/roadmap/issues/701
+ */
+
+const lang = getLangFromUrl(Astro.url)
+---
+
+<html lang={lang}>
   <slot name="head" />
   <body class="bg-background text-foreground">
     <slot />

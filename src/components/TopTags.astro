@@ -1,17 +1,23 @@
 ---
+import { getLangFromUrl, langPrefix, useTranslations } from '@utils'
+
 import Section from './Section.astro'
 import Tags from './Tags.astro'
 import Icon from './Icon.astro'
+
+const lang = getLangFromUrl(Astro.url)
+const [addPrefix] = langPrefix(lang)
+const t = useTranslations(lang)
 ---
 
 <Section display="flex">
-  <span class="flex-1" slot="title">Top Tags</span>
+  <span class="flex-1" slot="title">{t('top.tags.name')}</span>
   <a
-    href="/tags"
+    href={addPrefix('/tags')}
     class="flex cursor-pointer items-center text-sm text-accents-5 hover:underline"
     slot="title"
   >
-    view all tags
+    {t('top.tags.more')}
     <Icon class="ml-1" name="chevrons-right" />
   </a>
   <Tags limit={5} />

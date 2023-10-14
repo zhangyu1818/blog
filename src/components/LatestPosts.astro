@@ -1,7 +1,7 @@
 ---
 import Section from './Section.astro'
 import { queryPostsFromIssues } from '@services'
-import { formatDate } from '@utils'
+import { formatDate, getLangFromUrl, langPrefix, useTranslations } from '@utils'
 import ItemContainer from './ItemContainer.astro'
 import Icon from './Icon.astro'
 
@@ -10,27 +10,32 @@ const {
     issues: { nodes: postItems },
   },
 } = await queryPostsFromIssues({ first: 3, withContent: false })
+
+const lang = getLangFromUrl(Astro.url)
+const [addPrefix] = langPrefix(lang)
+const t = useTranslations(lang)
 ---
 
 <Section display="flex">
-  <span class="flex-1" slot="title">Latest Posts</span>
+  <span class="flex-1" slot="title">{t('latest.posts.name')}</span>
   <a
-    href="/post"
+    href={addPrefix('/post')}
     class="flex cursor-pointer items-center text-sm text-accents-5 hover:underline"
     slot="title"
   >
-    view all posts
+    {t('latest.posts.more')}
     <Icon class="ml-1" name="chevrons-right" />
   </a>
   {
     postItems.map(item => {
       const labels = item.labels.nodes
+      const date = formatDate(item.createdAt, lang)
       return (
-        <a href={`/post/${item.number}`}>
+        <a href={addPrefix(`/post/${item.number}`)}>
           <ItemContainer>
             <span class="flex items-center text-xs text-accents-5">
               <Icon class="mr-2" name="calendar" />
-              {formatDate(item.createdAt)}
+              {date}
             </span>
             <p class="text-sm font-semibold">{item.title}</p>
             <div>

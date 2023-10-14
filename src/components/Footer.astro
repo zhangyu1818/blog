@@ -1,20 +1,23 @@
 ---
+import { getLangFromUrl, useTranslations } from '@utils'
 import Social from './Social.astro'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <footer
   class="mt-12 flex min-h-screen w-full flex-col justify-between border-t border-accents-3 bg-accents-1 text-accents-6 dark:border-0"
 >
   <div class="m-auto flex max-w-[800px] flex-1 flex-col justify-between px-6 py-16 md:px-8">
-    <h2 class="text-4xl md:text-6xl">Get in Touch.</h2>
-    <p class="px-4 text-3xl md:text-5xl">
-      If you'd like to explore more of my content, click on the social media links below or
-      subscribe to my RSS feed.
+    <h2 class="text-4xl md:text-6xl">{t('footer.title')}</h2>
+    <p class="px-4 text-3xl !leading-snug md:text-5xl">
+      {t('footer.description')}
     </p>
     <Social simple />
   </div>
   <p class="m-auto max-w-[800px] p-4 text-center text-xs text-accents-5">
-    <span class="block">Copyright © zhangyu1818</span>
-    <span class="block">Made with Astro 🚀</span>
+    <span class="block">{t('footer.copyright')}</span>
+    <span class="block">{t('footer.made.with')}</span>
   </p>
 </footer>

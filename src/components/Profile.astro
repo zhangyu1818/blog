@@ -2,14 +2,19 @@
 import Markdown from './Markdown.astro'
 import Social from './Social.astro'
 
-import { parseMarkdown } from '@utils'
+import { parseMarkdown, getLangFromUrl } from '@utils'
 import { queryProfileREADME } from '@services'
+import { defaultLanguage } from '@i18n/languages'
+
+const lang = getLangFromUrl(Astro.url)
+const fileSuffix = lang === defaultLanguage ? '' : lang
 
 const {
   repository: {
     object: { text },
   },
-} = await queryProfileREADME()
+  // query from master branch
+} = await queryProfileREADME(fileSuffix)
 
 const markdown = await parseMarkdown(text, false)
 ---
