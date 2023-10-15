@@ -1,8 +1,8 @@
 name: build new version
 
 on:
-  issues:
-    types: [closed]
+  discussion:
+    types: [created, edited]
 
 jobs:
   build:
