@@ -3,6 +3,7 @@ import { getLangFromUrl, langPrefix, useTranslations, normalizeUrl } from '@util
 
 import Wave from './Wave.astro'
 import ThemeSwitcher from './ThemeSwitcher.astro'
+import LanguageSwitcher from './LanguageSwitcher.astro'
 
 export interface Props {
   wave?: boolean
@@ -28,7 +29,7 @@ const currentPath = normalizeUrl(Astro.url.pathname)
     <a
       class:list={[
         'relative z-10 block py-6 text-xl font-bold',
-        { 'text-white mix-blend-difference px-6': wave },
+        { 'px-6 text-white mix-blend-difference': wave },
       ]}
       href={addPrefix('/')}>zhangyu.dev</a
     >
@@ -40,9 +41,9 @@ const currentPath = normalizeUrl(Astro.url.pathname)
         <li>
           <a
             class:list={[
-              'hover:text-foreground transition',
+              'transition hover:text-foreground',
               {
-                'text-foreground font-semibold ': currentPath === path,
+                'font-semibold text-foreground ': currentPath === path,
               },
             ]}
             href={path}
@@ -54,4 +55,5 @@ const currentPath = normalizeUrl(Astro.url.pathname)
     }
   </ul>
   <ThemeSwitcher />
+  <LanguageSwitcher />
 </nav>

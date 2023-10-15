@@ -1,0 +1,27 @@
+---
+import Icon from './Icon.astro'
+---
+
+<button class="language-switcher mx-2 p-2">
+  <Icon name="language" class="text-xl text-inherit md:text-accents-5" />
+</button>
+
+<script>
+  // TODO
+
+  const initLanguageSwitcher = () => {
+    const btn = document.querySelector<HTMLButtonElement>('.language-switcher')!
+    btn.onclick = () => {
+      const zh = window.location.pathname.startsWith('/zh-cn')
+      if (zh) {
+        window.location.href = window.location.pathname.replace('/zh-cn', '')
+      } else {
+        window.location.href = `/zh-cn${window.location.pathname}`
+      }
+    }
+  }
+
+  initLanguageSwitcher()
+
+  document.addEventListener('astro:after-swap', initLanguageSwitcher)
+</script>
