@@ -7,7 +7,6 @@ import Social from '@components/Social.astro'
 import PageContainer from '@components/PageContainer.astro'
 
 import { formatDate, getLangFromUrl, langPrefix, parseMarkdown, useTranslations } from '@utils'
-import { repoName, repoOwner } from 'blogConfig'
 
 import type { DiscussionContent } from '@services/interface'
 
@@ -63,12 +62,3 @@ const markdown = parseMarkdown(body)
     </article>
   </PageContainer>
 </HtmlLayout>
-
-<script
-  is:inline
-  src="https://utteranc.es/client.js"
-  repo={`${repoOwner}/${repoName}`}
-  issue-number={number}
-  theme="preferred-color-scheme"
-  crossorigin="anonymous"
-  async></script>

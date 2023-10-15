@@ -80,10 +80,10 @@ This file is in BETA. Please test and contribute to the discussion:
       <body class="bg-white">
         <nav class="container-md px-3 py-2 mt-2 mt-md-5 mb-5 markdown-body">
           <p class="bg-yellow-light ml-n1 px-1 py-1 mb-1">
-            <strong>这是一个Web feed，</strong> 也称为 RSS feed。通过将地址栏中的 URL 复制到您的RSS阅读器中进行<strong>订阅</strong>。
+            <strong>This is a web feed,</strong> also known as an RSS feed. <strong>Subscribe</strong> by copying the URL from the address bar into your newsreader.
           </p>
           <p class="text-gray">
-            访问 <a href="https://aboutfeeds.com">About Feeds</a> 来免费获取RSS阅读器和订阅。
+            Visit <a href="https://aboutfeeds.com">About Feeds</a> to get started with newsreaders and subscribing. It’s free.
           </p>
         </nav>
         <div class="container-md px-3 py-3 markdown-body">
@@ -107,7 +107,7 @@ This file is in BETA. Please test and contribute to the discussion:
                 <path d="M184 213A140 140 0 0 0 44 73 V 38a175 175 0 0 1 175 175z" fill="#FFF"/>
               </svg>
 
-              Web Feed 预览
+              Web Feed Preview
             </h1>
             <h2><xsl:value-of select="/rss/channel/title"/></h2>
             <p><xsl:value-of select="/rss/channel/description"/></p>
@@ -115,10 +115,10 @@ This file is in BETA. Please test and contribute to the discussion:
               <xsl:attribute name="href">
                 <xsl:value-of select="/rss/channel/link"/>
               </xsl:attribute>
-              访问网站 &#x2192;
+              Visit Website &#x2192;
             </a>
           </header>
-          <h2>最近的博文</h2>
+          <h2>Recent Items</h2>
           <xsl:for-each select="/rss/channel/item">
             <div class="pb-5">
               <h3 class="mb-0">
@@ -130,7 +130,7 @@ This file is in BETA. Please test and contribute to the discussion:
                 </a>
               </h3>
               <small class="text-gray">
-                推送日期: <xsl:value-of select="pubDate" />
+                Published: <xsl:value-of select="pubDate" />
               </small>
             </div>
           </xsl:for-each>
