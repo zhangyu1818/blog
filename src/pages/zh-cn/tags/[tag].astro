@@ -1,30 +1,21 @@
 ---
 import DynamicTagLayout from '@layouts/DynamicTagLayout.astro'
 
-import { queryAllLabels, queryPostsFromLabel } from '@services'
+import { queryPostsFromAllLabel } from '@services'
 
 import type { InferGetStaticPropsType, InferGetStaticParamsType } from 'astro'
 
 export async function getStaticPaths() {
-  const {
-    repository: {
-      labels: { nodes },
-    },
-  } = await queryAllLabels()
-
-  const labels = nodes.map(v => v.name)
-
-  const posts = await Promise.all(labels.map(label => queryPostsFromLabel({ label })))
-
-  return posts.map(item => {
-    const issues = item.repository.label.issues.nodes
-    const tag = item.repository.label.name
+  const results = await queryPostsFromAllLabel()
+  return results.map(item => {
+    const posts = item.posts.search.nodes
+    const tag = item.label
     return {
       params: {
         tag,
       },
       props: {
-        posts: issues,
+        posts,
       },
     }
   })

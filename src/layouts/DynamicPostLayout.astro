@@ -9,7 +9,7 @@ import PageContainer from '@components/PageContainer.astro'
 import { formatDate, getLangFromUrl, langPrefix, parseMarkdown, useTranslations } from '@utils'
 import { repoName, repoOwner } from 'blogConfig'
 
-import type { IssueContent } from '@services/interface'
+import type { DiscussionContent } from '@services/interface'
 
 type ExtraData = {
   prev: { number: number; title: string } | null
@@ -25,7 +25,7 @@ const {
   url,
   // prev,
   // next,
-} = Astro.props as IssueContent & ExtraData
+} = Astro.props as DiscussionContent & ExtraData
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)

@@ -6,9 +6,13 @@ import Footer from '@components/Footer.astro'
 import PageContainer from '@components/PageContainer.astro'
 import PostItem from '@components/PostItem.astro'
 
-import type { IssueContent } from '@services/interface'
+import type { DiscussionContent } from '@services/interface'
 
-const { posts } = Astro.props as { posts: IssueContent[] }
+export interface Props {
+  posts: DiscussionContent[]
+}
+
+const { posts } = Astro.props
 ---
 
 <HtmlLayout>

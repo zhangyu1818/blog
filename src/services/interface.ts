@@ -2,8 +2,8 @@ export interface Repository<T> {
   repository: T
 }
 
-export interface Issues {
-  nodes: IssueContent[]
+export interface Discussions {
+  nodes: DiscussionContent[]
   pageInfo: {
     hasNextPage: boolean
     endCursor: string
@@ -11,7 +11,7 @@ export interface Issues {
   totalCount: number
 }
 
-export interface IssueContent {
+export interface DiscussionContent {
   number: number
   title: string
   createdAt: string
@@ -21,6 +21,8 @@ export interface IssueContent {
   body?: string
   bodyHTML?: string
 }
+
+export type RepositoryDiscussions = Repository<{ discussions: Discussions }>
 
 export interface PinnedItems {
   user: {
@@ -50,22 +52,21 @@ export interface Labels {
   nodes: Label[]
 }
 
-export interface LabelsWithIssues {
-  nodes: (Label & {
-    issues?: {
-      nodes: { number: number }[]
-    }
-  })[]
-}
-
-export type RepositoryIssues = Repository<{ issues: Issues }>
-
 export type RepositoryFile = Repository<{ object: { text: string } }>
 
-export type RepositoryLabels = Repository<{
-  labels: LabelsWithIssues
-}>
+export type RepositoryLabels = Repository<{ labels: Labels }>
 
-export type RepositoryLabelIssues = Repository<{
-  label: { name: string; issues: Issues }
+export type Search = { search: Discussions }
+
+// Categories
+export interface DiscussionCategory {
+  id: string
+  name: string
+}
+export interface DiscussionCategories {
+  nodes: DiscussionCategory[]
+}
+
+export type RepositoryDiscussionCategories = Repository<{
+  discussionCategories: DiscussionCategories
 }>

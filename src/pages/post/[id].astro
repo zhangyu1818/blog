@@ -1,9 +1,9 @@
 ---
 import DynamicPostLayout from '@layouts/DynamicPostLayout.astro'
 
-import { queryPostsFromIssues } from '@services'
+import { queryDiscussions } from '@services'
 
-import type { IssueContent } from '@services/interface'
+import type { DiscussionContent } from '@services/interface'
 
 type ExtraData = {
   prev: { number: number; title: string } | null
@@ -11,12 +11,11 @@ type ExtraData = {
 }
 
 export async function getStaticPaths() {
-  const { repository } = await queryPostsFromIssues({ withContent: true })
-  const { issues } = repository
-  const { nodes } = issues
-  return nodes.map((node, index) => {
-    const prev = nodes[index - 1]
-    const next = nodes[index + 1]
+  // TODO official i18n
+  const discussions = await queryDiscussions({ lang: 'en', body: true })
+  return discussions!.map((node, index) => {
+    const prev = discussions![index - 1]
+    const next = discussions![index + 1]
 
     return {
       params: {
@@ -40,7 +39,7 @@ const {
   url,
   // prev,
   // next,
-} = Astro.props as IssueContent & ExtraData
+} = Astro.props as DiscussionContent & ExtraData
 
 const props = { number, title, body, labels, createdAt, url }
 ---

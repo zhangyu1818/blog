@@ -1,26 +1,20 @@
 ---
 import { getLangFromUrl, langPrefix } from '@utils'
-import { queryAllLabels } from '@services'
+import { queryTopTags } from '@services'
 
 export interface Props {
   limit?: number
 }
-
-const {
-  repository: {
-    labels: { nodes },
-  },
-} = await queryAllLabels()
-
 const { limit } = Astro.props
 
-let labels = nodes
+const lang = getLangFromUrl(Astro.url)
+
+let labels = await queryTopTags(lang)
 
 if (limit) {
   labels = labels.slice(0, limit)
 }
 
-const lang = getLangFromUrl(Astro.url)
 const [addPrefix] = langPrefix(lang)
 ---
 

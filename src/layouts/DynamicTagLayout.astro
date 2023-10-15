@@ -8,10 +8,14 @@ import Footer from '@components/Footer.astro'
 
 import { getLangFromUrl, useTranslations } from '@utils'
 
-import type { IssueContent } from '@services/interface'
+import type { DiscussionContent } from '@services/interface'
 
-// TODO types
-const { posts, tag } = Astro.props as { posts: IssueContent[]; tag: string }
+export interface Props {
+  posts: DiscussionContent[]
+  tag: string
+}
+
+const { posts, tag } = Astro.props
 
 const isEmpty = posts.length === 0
 

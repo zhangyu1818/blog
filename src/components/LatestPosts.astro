@@ -1,19 +1,15 @@
 ---
 import Section from './Section.astro'
-import { queryPostsFromIssues } from '@services'
+import { queryDiscussions } from '@services'
 import { formatDate, getLangFromUrl, langPrefix, useTranslations } from '@utils'
 import ItemContainer from './ItemContainer.astro'
 import Icon from './Icon.astro'
 
-const {
-  repository: {
-    issues: { nodes: postItems },
-  },
-} = await queryPostsFromIssues({ first: 3, withContent: false })
-
 const lang = getLangFromUrl(Astro.url)
 const [addPrefix] = langPrefix(lang)
 const t = useTranslations(lang)
+
+const discussions = await queryDiscussions({ first: 3, lang })
 ---
 
 <Section display="flex">
@@ -27,7 +23,7 @@ const t = useTranslations(lang)
     <Icon class="ml-1" name="chevrons-right" />
   </a>
   {
-    postItems.map(item => {
+    discussions!.map(item => {
       const labels = item.labels.nodes
       const date = formatDate(item.createdAt, lang)
       return (

@@ -1,4 +1,5 @@
 ---
+import { getLangFromUrl } from '@utils'
 import Icon from './Icon.astro'
 
 export interface Props {
@@ -7,6 +8,10 @@ export interface Props {
 }
 
 const { class: className, simple } = Astro.props
+
+const lang = getLangFromUrl(Astro.url)
+
+const rssHref = `/rss/${lang}.xml`
 ---
 
 {
@@ -44,7 +49,7 @@ const { class: className, simple } = Astro.props
         </a>
       </li>
       <li>
-        <a title="RSS" class="flex items-center" href="/rss.xml">
+        <a title="RSS" class="flex items-center" href={rssHref}>
           <Icon name="rss" />
           <span class="ml-2">RSS</span>
         </a>

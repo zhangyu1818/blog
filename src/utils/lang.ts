@@ -24,7 +24,7 @@ export function langPrefix(lang: string) {
 }
 
 export function useTranslations(lang: keyof typeof ui) {
-  return function t(key: keyof typeof ui[typeof defaultLanguage]) {
+  return function t(key: keyof (typeof ui)[typeof defaultLanguage]) {
     return ui[lang][key] || ui[defaultLanguage][key]
   }
 }

@@ -1,13 +1,11 @@
 ---
 import PostLayout from '@layouts/PostLayout.astro'
 
-import { queryPostsFromIssues } from '@services'
+import { queryDiscussions } from '@services'
+import { getLangFromUrl } from '@utils'
 
-const {
-  repository: {
-    issues: { nodes },
-  },
-} = await queryPostsFromIssues({ withContent: false })
+const lang = getLangFromUrl(Astro.url)
+const discussions = await queryDiscussions({ lang })
 ---
 
-<PostLayout posts={nodes} />
+<PostLayout posts={discussions!} />
