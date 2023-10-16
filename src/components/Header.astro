@@ -22,6 +22,7 @@ const links = [
 ]
 
 const currentPath = normalizeUrl(Astro.url.pathname)
+const inPostPage = /\/post\/\d+/.test(currentPath)
 ---
 
 <nav class="flex w-full flex-wrap items-center px-[calc(50%_-_400px)]">
@@ -55,5 +56,5 @@ const currentPath = normalizeUrl(Astro.url.pathname)
     }
   </ul>
   <ThemeSwitcher />
-  <LanguageSwitcher />
+  {!inPostPage && <LanguageSwitcher />}
 </nav>

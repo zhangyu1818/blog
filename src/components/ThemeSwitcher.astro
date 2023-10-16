@@ -51,7 +51,7 @@
       (currentShouldDark && (storageTheme === null || storageTheme === 'auto')) ||
       storageTheme === 'dark'
 
-    setClass(isDark)
+    setTheme(isDark)
 
     function toggleTheme(event) {
       isDark = !isDark
@@ -70,7 +70,7 @@
         !window.matchMedia(`(prefers-reduced-motion: reduce)`).matches
       ) {
         const transition = document.startViewTransition(() => {
-          setClass(isDark)
+          setTheme(isDark)
         })
 
         transition.ready.then(() => {
@@ -81,19 +81,20 @@
           })
         })
       } else {
-        setClass(isDark)
+        setTheme(isDark)
       }
     }
 
-    function setClass(dark) {
+    function setTheme(dark) {
       document.documentElement.classList[dark ? 'add' : 'remove']('dark')
+      setGiscusTheme(isDark)
     }
 
     darkQuery.onchange = e => {
       const current = localStorage.getItem('theme')
       if (current === 'auto') {
         isDark = e.matches
-        setClass(isDark)
+        setTheme(isDark)
       }
 
       if (e.matches) {
@@ -106,6 +107,17 @@
   }
 
   initialThemeSwitcher()
+
+  function setGiscusTheme(dark) {
+    const giscusIframe = document.querySelector('iframe.giscus-frame')
+    const theme = dark ? 'dark' : 'light'
+    if (giscusIframe) {
+      giscusIframe.contentWindow.postMessage(
+        { giscus: { setConfig: { theme } } },
+        'https://giscus.app',
+      )
+    }
+  }
 
   document.addEventListener('astro:after-swap', initialThemeSwitcher)
 </script>

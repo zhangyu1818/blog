@@ -2,8 +2,8 @@
 import Icon from './Icon.astro'
 ---
 
-<button class="language-switcher mx-2 p-2">
-  <Icon name="language" class="text-xl text-inherit md:text-accents-5" />
+<button aria-label="language switcher" class="language-switcher mx-2 p-2">
+  <Icon name="language" class="text-xl text-inherit dark:md:text-accents-5" />
 </button>
 
 <script>
@@ -11,6 +11,9 @@ import Icon from './Icon.astro'
 
   const initLanguageSwitcher = () => {
     const btn = document.querySelector<HTMLButtonElement>('.language-switcher')!
+    if (!btn) {
+      return
+    }
     btn.onclick = () => {
       const zh = window.location.pathname.startsWith('/zh-cn')
       if (zh) {

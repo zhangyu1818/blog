@@ -45,18 +45,3 @@ const props = { number, title, body, labels, createdAt, url }
 ---
 
 <DynamicPostLayout {...props} />
-
-<script
-  is:inline
-  src="https://giscus.app/client.js"
-  data-repo="zhangyu1818/blog"
-  data-repo-id="MDEwOlJlcG9zaXRvcnkzMjk0OTk1NjU="
-  data-mapping="number"
-  data-term={`${number}`}
-  data-reactions-enabled="1"
-  data-emit-metadata="0"
-  data-input-position="bottom"
-  data-theme="preferred_color_scheme"
-  data-lang="zh-CN"
-  crossorigin="anonymous"
-  async></script>

@@ -7,6 +7,7 @@ import Social from '@components/Social.astro'
 import PageContainer from '@components/PageContainer.astro'
 
 import { formatDate, getLangFromUrl, langPrefix, parseMarkdown, useTranslations } from '@utils'
+import { defaultLanguage } from '@i18n/languages'
 
 import type { DiscussionContent } from '@services/interface'
 
@@ -60,5 +61,20 @@ const markdown = parseMarkdown(body)
       </p>
       <Social class="self-start" />
     </article>
+    <script
+      is:inline
+      id="giscus-script"
+      src="https://giscus.app/client.js"
+      data-repo="zhangyu1818/blog"
+      data-repo-id="MDEwOlJlcG9zaXRvcnkzMjk0OTk1NjU="
+      data-mapping="number"
+      data-term={`${number}`}
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang={lang === defaultLanguage ? 'en' : 'zh-CN'}
+      crossorigin="anonymous"
+      async></script>
   </PageContainer>
 </HtmlLayout>

@@ -51,5 +51,5 @@
 }
 
 .giscus {
-  @apply m-auto max-w-[800px] p-8 md:p-12;
+  @apply m-auto max-w-[800px];
 }
