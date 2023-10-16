@@ -271,22 +271,23 @@ export const queryDiscussions = async (params: DiscussionsParams) => {
   return normalizeDiscussions(discussionsResponse)
 }
 
-type LabelQueryParams = Omit<SearchQueryParams, 'query'>
+type LabelQueryParams = Omit<SearchQueryParams, 'query'> & { lang: unknown }
 
-export const queryPostsFromAllLabel = async (params?: LabelQueryParams) => {
-  params ??= { first: 100 }
+// TODO optimize
+export const queryPostsFromAllLabel = async (params: LabelQueryParams) => {
+  const { lang, ...rest } = params
   const allLabels = await queryAllLabelsWithCache()
   const normalizedLabels = normalizeLabels(allLabels)
   const labels = normalizedLabels.map(v => v.name)
 
   const posts = await Promise.all(
     labels.map(label => {
-      const query = `repo:${repoOwner}/${repoName} label:"${label}"`
+      const query = `repo:${repoOwner}/${repoName} label:"${label}" category:${lang}`
       return new Promise<{
         label: string
         posts: Search
       }>(async resolve => {
-        const posts = await queryPostsFromQueryWithCache({ query, ...params })
+        const posts = await queryPostsFromQueryWithCache({ query, ...rest })
         resolve({ label, posts })
       })
     }),

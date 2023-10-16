@@ -6,7 +6,7 @@ import { queryPostsFromAllLabel } from '@services'
 import type { InferGetStaticPropsType, InferGetStaticParamsType } from 'astro'
 
 export async function getStaticPaths() {
-  const results = await queryPostsFromAllLabel()
+  const results = await queryPostsFromAllLabel({ lang: 'zh-cn' })
   return results.map(item => {
     const posts = item.posts.search.nodes
     const tag = item.label
