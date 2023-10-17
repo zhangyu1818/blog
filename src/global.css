@@ -34,6 +34,16 @@
   list-style: revert;
 }
 
+.markdown-body .heading-link {
+  color: unset;
+}
+
+.markdown-body .heading-link .octicon-link {
+  margin-left: 8px;
+  color: var(--fgColor-muted, var(--color-fg-subtle));
+  visibility: visible;
+}
+
 .giscus {
   @apply m-auto max-w-[800px];
 }
