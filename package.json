@@ -12,13 +12,12 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@astrojs/prefetch": "^0.4.1",
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.1",
     "@astrojs/tailwind": "^5.0.2",
     "@octokit/core": "^5.0.1",
     "@zhangyu1818/github-markdown-css": "^5.3.0",
-    "astro": "^3.3.0",
+    "astro": "^3.5.7",
     "bg-css": "^1.0.1",
     "dayjs": "^1.11.7",
     "motion-wave": "^0.0.5"
